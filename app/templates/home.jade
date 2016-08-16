@@ -14,7 +14,7 @@ html
         noscript
             link(rel='stylesheet', type='text/css', href='/css/nojs.css')
 
-    body
+    body(ng-app="submissionApp", ng-controller="submissionController")
 
         // Facebook SDK
         script.
@@ -34,9 +34,16 @@ html
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
 
+        // angular
+        span hello {{name}}
+
         // top menu bar: create account and login
         // hook this up with facebook
-
+        a(href="/submit") Submissions
+        span &nbsp;|&nbsp;
+        a(href="/about") About
+        span &nbsp;|&nbsp;
+        a(href="/") My Games
 
         // if logged in, show personal stats like games played, estimated hours spent gaming, etc.
         h1 Dashboard
@@ -64,7 +71,7 @@ html
 
         //script(type='text/javascript', src='/js/modernizr.custom.28468.js')
         //script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
-        script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
-        script(src='/js/app.min.js')
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js')
+        script(src='js/app.min.js')
 
 

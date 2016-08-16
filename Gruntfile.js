@@ -7,6 +7,10 @@ module.exports = function (grunt) {
         .filterDev('grunt-*')
         .forEach(grunt.loadNpmTasks);
 
+
+    // JS files
+    var jsfiles = [ "app/js/submission.js" ];
+
     grunt.initConfig({
 
         serve: {
@@ -24,14 +28,15 @@ module.exports = function (grunt) {
                     verbose: true
                 },
                 src: './app/app.js',
-                dest: './www/js/app.min.js'
+                dest: './app/js/app.min.js' //'./www/js/app.min.js'
             }
         },
 
-        browserify: {
-            prd: {
+        // for js
+        uglify: {
+            dev: {
                 files: {
-                    './www/js/app.min.js': './app/app.js'
+                    'www/js/app.min.js': jsfiles
                 }
             }
         },
@@ -46,7 +51,7 @@ module.exports = function (grunt) {
             },
             jade: {
                 files: './app/templates/**/*.jade',
-                tasks: ['jade', 'replace']
+                tasks: ['jade']
             }
         },
 
@@ -70,32 +75,18 @@ module.exports = function (grunt) {
                 }
             }
         },
-        postcss: {
-            prd: {
-                options: {
-                    map: false,
-                    processors: [
-                        require('autoprefixer')({browsers: 'last 2 versions'}), // add vendor prefixes
-                        require('cssnano')() // minify the result
-                    ]
-                },
-                dist: {
-                    src: './www/css/app.min.css'
-                }
-            }
-        },
 
         jade: {
-            ngTmpls: {
-                options: {
-                    client: true,
-                    amd: false,
-                    namespace: 'ngTmpls'
-                },
-                files: {
-                    './www/js/templates.min.js': ['./app/templates/layout/*.jade', './app/templates/modules/*.jade', './app/templates/layout/main.jade']
-                }
-            },
+            //ngTmpls: {
+            //    options: {
+            //        client: true,
+            //        amd: false,
+            //        namespace: 'ngTmpls'
+            //    },
+            //    files: {
+            //        './www/js/templates.min.js': ['./app/templates/layout/*.jade', './app/templates/modules/*.jade', './app/templates/layout/main.jade']
+            //    }
+            //},
             compile: {
                 options: {
                     data: {
@@ -112,8 +103,8 @@ module.exports = function (grunt) {
         }
     });
 
-    var devTasks = ['jade', 'browserify:dev', 'sass:dev', 'watch_dev'];
-    var prdTasks = ['jade', 'browserify:prd', 'sass:prd', 'postcss:prd'];
+    var devTasks = ['jade', 'uglify', 'sass:dev', 'watch_dev'];
+    var prdTasks = ['jade', 'uglify', 'sass:prd'];
 
     grunt.registerTask('default', prdTasks);
     grunt.registerTask('dev', devTasks);

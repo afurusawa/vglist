@@ -14,45 +14,46 @@ html
         noscript
             link(rel='stylesheet', type='text/css', href='/css/nojs.css')
 
-    body
-
+    body(ng-app="submissionApp" ng-controller="submissionController")
+        a(href="/") Home
+        br
 
         // TODO: hook this up with angular ngSubmit
+        form(action='/addGame', method='post')
+            // what would be cool here is to check the games db and submissions db to see if the title already exists
+            // e.g. game already exists in db OR game info has already been submitted by another user
+            h1 title
+            input(type="text", ng-model="game.title", name="title", placeholder="title" required)
 
-        // what would be cool here is to check the games db and submissions db to see if the title already exists
-        // e.g. game already exists in db OR game info has already been submitted by another user
-        h1 title
-        input(type="text" palceholder="title")
+            h1 series (optional)
+            input(type="text", ng-model="game.series", name="series", placeholder="series")
 
-        h1 series (optional)
-        input(type="text" placeholder="series")
+            h1 platform(s)
+            input(type="checkbox", ng-model="game.platform['pc']", name="platform[pc]")
+            span pc
+            br
+            input(type="checkbox", ng-model="game.platform['ps4']", name="platform[ps4]")
+            span playstation 4
+            br
+            input(type="checkbox", ng-model="game.platform['xbox one']", name="platform[xbox one]")
+            span xbox one
+            br
+            input(type="checkbox", ng-model="game.platform['wii u']", name="platform[wii u]")
+            span wii u
+            br
+            input(type="checkbox", ng-model="game.platform['n64']", name="platform[n64]")
+            span nintendo 64
+            br
 
-        h1 platform(s)
-        input(type="checkbox")
-        span pc
-        br
-        input(type="checkbox")
-        span playstation 4
-        br
-        input(type="checkbox")
-        span xbox one
-        br
-        input(type="checkbox")
-        span wii u
-        br
-        input(type="checkbox")
-        span nintendo 64
-        br
+            h1 year released
+            input(type="text", ng-model="game.released" name="year", placeholder="first year released" required)
 
-        h1 year released
-        input(type="text" placeholder="year released")
-
-        h1 submit
-        input(type="submit" value="Submit")
+            h1 submit
+            input(type="submit", value="Submit")
 
         // submission will be sent to submissions table/database for review and approval/rejection
 
-
+        p data = {{game | json}}
 
 
 
