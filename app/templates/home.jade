@@ -6,13 +6,10 @@ html
         meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
         title Test
         meta(name='description', content='')
+        link(rel='stylesheet', type='text/css', href='/css/app.min.css')
         link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Roboto:500,400,300')
         link(rel='stylesheet', type='text/css', href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
         //link(rel='stylesheet', type='text/css', href='/css/hover-min.css')
-        //link(rel='stylesheet', type='text/css', href='/css/app.min.css')
-        //link(rel='stylesheet', type='text/css', href='/css/style2.css')
-        noscript
-            link(rel='stylesheet', type='text/css', href='/css/nojs.css')
 
     body(ng-app="submissionApp", ng-controller="submissionController")
 
@@ -34,16 +31,14 @@ html
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
 
-        // angular
-        span hello {{name}}
 
         // top menu bar: create account and login
         // hook this up with facebook
         a(href="/submit") Submissions
         span &nbsp;|&nbsp;
-        a(href="/about") About
+        a(href="/about") ABOUT
         span &nbsp;|&nbsp;
-        a(href="/") My Games
+        a(href="/games") My Games
 
         // if logged in, show personal stats like games played, estimated hours spent gaming, etc.
         h1 Dashboard
@@ -71,7 +66,10 @@ html
 
         //script(type='text/javascript', src='/js/modernizr.custom.28468.js')
         //script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
-        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js')
+
+        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js')
+
+        //script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js')
         script(src='js/app.min.js')
 
 

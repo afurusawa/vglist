@@ -37,7 +37,11 @@ app.get('/submit', function(req, res) {
 });
 
 app.get('/about', function(req, res) {
-    res.sendFile(path.join(__dirname + '/www/home.html'));
+    res.sendFile(path.join(__dirname + '/www/about.html'));
+});
+
+app.get('/games', function(req, res) {
+    res.sendFile(path.join(__dirname + '/www/games.html'));
 });
 
 
@@ -46,4 +50,9 @@ app.get('/about', function(req, res) {
 
 
 // REST API
-app.post('/addGame', games.addGame);
+
+// GET
+app.get('/browse-games', games.findAll);
+
+// POST
+app.post('/submit', games.addGame);

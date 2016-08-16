@@ -1,4 +1,5 @@
-// define angular module/app
+'use strict';
+
 var submissionApp = angular.module('submissionApp', []);
 
 submissionApp.controller('submissionController', ['$scope', '$http', '$log', function($scope, $http, $log) {

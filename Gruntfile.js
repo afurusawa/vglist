@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 
 
     // JS files
-    var jsfiles = [ "app/js/submission.js" ];
+    var jsfiles = [ "app/js/submission.js", "app/js/list.js" ];
 
     grunt.initConfig({
 
@@ -43,7 +43,7 @@ module.exports = function (grunt) {
 
         watch: {
             sass: {
-                files: './scss/**/*.scss',
+                files: './app/scss/**/*.scss',
                 tasks: ['sass:dev'],
                 options: {
                     livereload: true
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
                     sourceMaps: true
                 },
                 files: {
-                    'www/css/app.min.css': 'scss/app.scss'
+                    'www/css/app.min.css': 'app/scss/app.scss'
                 }
             },
             prd: {
@@ -71,7 +71,7 @@ module.exports = function (grunt) {
                     outputStyle: 'compressed'
                 },
                 files: {
-                    'www/css/app.min.css': 'scss/app.scss'
+                    'www/css/app.min.css': 'app/scss/app.scss'
                 }
             }
         },
@@ -97,14 +97,15 @@ module.exports = function (grunt) {
                 files: {
                     './www/home.html': './app/templates/home.jade',
                     './www/submission.html': './app/templates/submission.jade',
-                    './www/about.html': './app/templates/about.jade'
+                    './www/about.html': './app/templates/about.jade',
+                    './www/games.html': './app/templates/games.jade'
                 }
             }
         }
     });
 
     var devTasks = ['jade', 'uglify', 'sass:dev', 'watch_dev'];
-    var prdTasks = ['jade', 'uglify', 'sass:prd'];
+    var prdTasks = ['jade', 'uglify', 'sass:dev'];
 
     grunt.registerTask('default', prdTasks);
     grunt.registerTask('dev', devTasks);

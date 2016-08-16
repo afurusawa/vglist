@@ -1,4 +1,4 @@
 'use strict';
 
-require('./js/connect.js');
+require('./js/list.js');
 require('./js/submission.js');
