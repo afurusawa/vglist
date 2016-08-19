@@ -9,13 +9,14 @@ var userSchema = mongoose.Schema({
     local            : {
         email        : String,
         password     : String,
-        username     : String
+        username     : String,
+        date         : { type: Date, default: Date.now }
     },
     facebook         : {
         id           : String,
         token        : String,
         email        : String,
-        name         : String
+        name         : String,
     },
     twitter          : {
         id           : String,

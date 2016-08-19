@@ -44,7 +44,7 @@ mongoose.connect(configDB.url); // connect to our database
 require('./app/config/passport')(passport); // pass passport for configuration
 
 // Routes
-require('./app/routes.js')(app, path, passport);
+require('./app/routes.js')(app, passport);
 
 
 
@@ -64,4 +64,4 @@ var server = app.listen(8080, function () {
 app.get('/browse-games', games.findAll);
 
 // POST
-app.post('/submit', games.addGame);
+app.post('/addGame', games.addGame);

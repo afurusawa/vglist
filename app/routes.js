@@ -1,6 +1,8 @@
 'use strict';
 
-module.exports = function(app, path, passport) {
+var path  = require('path');
+
+module.exports = function(app, passport) {
 
     // Not going to use res.render() to render jade because of cost
     app.get('/', function(req, res) {
@@ -42,8 +44,6 @@ module.exports = function(app, path, passport) {
             failureRedirect : '/'
         })
     );
-
-
 
 
 

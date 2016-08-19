@@ -13,7 +13,6 @@ html
 
     body(ng-app="userSessionApp")
 
-        p= "user is: " + user
         // top menu bar: create account and login
         // hook this up with facebook
         a(href="/submit") Submissions
@@ -23,7 +22,6 @@ html
         a(href="/games") GAMES
         span &nbsp;|&nbsp;
 
-        - var user = user
         if !user
             a(href='/signup') local signup
             .login(ng-controller="userSessionController")
@@ -37,11 +35,6 @@ html
             a(href="/profile")= user
             span &nbsp;|&nbsp;
             a(href="/logout") LOGOUT
-
-
-        .fb-like(data-share="true", data-width="450", data-show-faces="true")
-
-
 
 
         //script(type='text/javascript', src='/js/modernizr.custom.28468.js')

@@ -13,6 +13,8 @@ html
 
     body
 
+        a(href="/") HOME
+        span &nbsp;|&nbsp;
         a(href="/submit") Submissions
         span &nbsp;|&nbsp;
         a(href="/about") ABOUT
@@ -21,7 +23,7 @@ html
         span &nbsp;|&nbsp;
         a(href="/logout") LOGOUT
 
-        h1= "you made it to your profile, congrats " + user.local.username
+        h1= "you made it to your profile, congrats " + user
 
         // if logged in, show personal stats like games played, estimated hours spent gaming, etc.
         h1 Dashboard

@@ -42,8 +42,15 @@ html
             span nintendo 64
             br
 
-            h1 year released
-            input(type="text", ng-model="game.released" name="year", placeholder="first year released" required)
+            h1 release date
+            input(type="text", ng-model="game.released" name="year", placeholder="first released")
+
+            h1 publisher(s)
+            input(type="text", ng-model="game.publisher" name="publisher", placeholder="publishers")
+
+            h1 developer(s)
+            input(type="text", ng-model="game.developer" name="developer", placeholder="developers")
+
 
             h1 submit
             input(type="submit", value="Submit")
