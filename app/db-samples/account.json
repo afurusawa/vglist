@@ -1,0 +1,10 @@
+{
+  _id : new ObjectId(),
+
+  username : "ilsoluin",
+  email: "ilsoluin@gmail.com"
+  password : "salted hash",
+  joined : "date joined dd/mm/yyyy",
+
+
+}

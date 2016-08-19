@@ -11,58 +11,38 @@ html
         link(rel='stylesheet', type='text/css', href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
         //link(rel='stylesheet', type='text/css', href='/css/hover-min.css')
 
-    body(ng-app="submissionApp", ng-controller="submissionController")
+    body(ng-app="userSessionApp")
 
-        // Facebook SDK
-        script.
-            window.fbAsyncInit = function() {
-                FB.init({
-                    appId      : '1049673595068886',
-                    xfbml      : true,
-                    version    : 'v2.7'
-                });
-            };
-
-            (function(d, s, id){
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {return;}
-                js = d.createElement(s); js.id = id;
-                js.src = "//connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-
-
+        p= "user is: " + user
         // top menu bar: create account and login
         // hook this up with facebook
         a(href="/submit") Submissions
         span &nbsp;|&nbsp;
         a(href="/about") ABOUT
         span &nbsp;|&nbsp;
-        a(href="/games") My Games
+        a(href="/games") GAMES
+        span &nbsp;|&nbsp;
 
-        // if logged in, show personal stats like games played, estimated hours spent gaming, etc.
-        h1 Dashboard
-        .currently-playing
-            //list out the games currently playing
-            .currently-playing__game
-                p Stardew Valley | 143 hrs
-
-        .stats
-            .stats__games-played
-                p 76 games played
-
-            .stats__total-hours-spent
-                p 3556 hours spent gaming
-
-            // pie chart. use d3?
-            .stats__platforms
-                p 10% nintendo | 87% pc | 3% playstation
+        - var user = user
+        if !user
+            a(href='/signup') local signup
+            .login(ng-controller="userSessionController")
+                h1 login
+                form(action='/login', method='post')
+                    input(type='text', name='email', placeholder='email')
+                    input(type='password', name='password', placeholder='password')
+                    input(type="submit", value='login')
+                a(href="/auth/facebook") facebook
+        else
+            a(href="/profile")= user
+            span &nbsp;|&nbsp;
+            a(href="/logout") LOGOUT
 
 
-        h1 Recent Releases
-        p Overwatch
-        p The Witcher 3: Wild Hunt
-        p No Man's Sky
+        .fb-like(data-share="true", data-width="450", data-show-faces="true")
+
+
+
 
         //script(type='text/javascript', src='/js/modernizr.custom.28468.js')
         //script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')

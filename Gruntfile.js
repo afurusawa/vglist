@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 
 
     // JS files
-    var jsfiles = [ "app/js/submission.js", "app/js/list.js" ];
+    var jsfiles = [ "app/js/submission.js", "app/js/list.js", "app/js/user-session.js" ];
 
     grunt.initConfig({
 
