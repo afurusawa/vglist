@@ -1,13 +1,12 @@
 'use strict';
 
-var path  = require('path');
-
 module.exports = function(app, passport) {
 
-    // Not going to use res.render() to render jade because of cost
+
     app.get('/', function(req, res) {
         res.render('home.jade', { user : req.user });
     });
+
 
     app.get('/signup', function(req, res) {
         res.render('signup.jade', { message: req.flash('signupMessage') });
@@ -20,7 +19,6 @@ module.exports = function(app, passport) {
     }));
 
 
-
     app.get('/login', function(req, res) {
         res.render('/profile', { message: req.flash('loginMessage') });
     });
@@ -31,9 +29,7 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
     }));
 
-    // =====================================
-    // FACEBOOK ROUTES =====================
-    // =====================================
+
     // route for facebook authentication and login
     app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
@@ -45,9 +41,14 @@ module.exports = function(app, passport) {
         })
     );
 
+    app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 
 
-    app.get('/submit', function(req, res) {
+
+    app.get('/submit-game', function(req, res) {
         res.render('submission.jade');
     });
 
@@ -55,15 +56,9 @@ module.exports = function(app, passport) {
         res.render('about.jade');
     });
 
-    app.get('/games', function(req, res) {
-        res.render('games.jade');
+    app.get('/browse-games', function(req, res) {
+        res.render('games.jade', { user : req.user });
     });
-
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
-
 
 
     app.get('/profile', isLoggedIn, function(req, res) {

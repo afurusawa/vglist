@@ -29,7 +29,7 @@ app.set('view engine', 'jade');
 // Session configuration and handling w/ Passport
 app.use(session({
     cookieName: 'session',
-    secret: 'superextrasecretilsoluin',
+    secret: 'sup2erextr5ase@cretilsolu58in',
     duration: 60 * 60 * 1000,           // 60 minutes
     activeDuration: 10 * 60 * 1000,     // +10 minutes
 }));
@@ -46,9 +46,6 @@ require('./app/config/passport')(passport); // pass passport for configuration
 // Routes
 require('./app/routes.js')(app, passport);
 
-
-
-
 // Launch
 var server = app.listen(8080, function () {
     var host = server.address().address;
@@ -61,7 +58,13 @@ var server = app.listen(8080, function () {
 // REST API
 
 // GET
-app.get('/browse-games', games.findAll);
+app.get('/allGames', games.findAll);
+app.get('/myGames', games.findGamesByUser);
+app.get('/game/:id', games.findByGameId);
+app.get('/search/:searchString', games.findGameBySearch);
+
+app.get('/profile/:id', games.findProfile);
 
 // POST
 app.post('/addGame', games.addGame);
+app.post('/addToGameList', games.addToGameList);

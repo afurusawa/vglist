@@ -13,13 +13,11 @@ html
 
     body(ng-app="userSessionApp")
 
-        // top menu bar: create account and login
-        // hook this up with facebook
-        a(href="/submit") Submissions
+        a(href="/submit-game") SUBMIT GAME
         span &nbsp;|&nbsp;
         a(href="/about") ABOUT
         span &nbsp;|&nbsp;
-        a(href="/games") GAMES
+        a(href="/browse-games") GAMES
         span &nbsp;|&nbsp;
 
         if !user
@@ -30,11 +28,20 @@ html
                     input(type='text', name='email', placeholder='email')
                     input(type='password', name='password', placeholder='password')
                     input(type="submit", value='login')
+                h1 login using facebook
                 a(href="/auth/facebook") facebook
         else
             a(href="/profile")= user
             span &nbsp;|&nbsp;
             a(href="/logout") LOGOUT
+
+
+        .searchbar(ng-controller='searchBarController')
+            input(type='text' ng-model='search' placeholder='search for game')
+            .searchbar__results(ng-show='search.length >= 3')
+                p search results
+                p {{results | json}}
+
 
 
         //script(type='text/javascript', src='/js/modernizr.custom.28468.js')

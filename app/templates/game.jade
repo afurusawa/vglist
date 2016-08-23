@@ -11,12 +11,18 @@ html
         link(rel='stylesheet', type='text/css', href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
         //link(rel='stylesheet', type='text/css', href='/css/hover-min.css')
 
-    body(ng-app="listApp", ng-controller="listController")
-        a(href="/") Home
+    body
+
+        a(href="/submit-game") SUBMIT GAME
         span &nbsp;|&nbsp;
+        a(href="/about") ABOUT
+        span &nbsp;|&nbsp;
+        a(href="/browse-games") GAMES
+        span &nbsp;|&nbsp;
+
         if !user
             a(href='/signup') local signup
-            .login(ng-controller="userSessionController")
+            .login
                 h1 login
                 form(action='/login', method='post')
                     input(type='text', name='email', placeholder='email')
@@ -28,20 +34,26 @@ html
             a(href="/profile")= user
             span &nbsp;|&nbsp;
             a(href="/logout") LOGOUT
-        br
+
+        .game-content
+            br
+            h1 title: #{game.title} | #{game.platform}
+            .rate
+                button(ng-click="rateGame") Rate
+            h3 #{game.released} | #{game.series}
+            h3 developer(s): #{game.developer}
+            h3 publisher(s): #{game.publisher}
+
+            h2 #{game.metadata.userRating} | #{game.metadata.criticRating}
 
 
 
-        .game(ng-repeat="game in list")
-
-            a(href='/game/{{game._id}}') {{game.title}} [id: {{game._id}}]
-                button(ng-click="addToList(game._id, game.title)", ng-disabled='isDisabled') {{button}}
-
-        br
-        br
-        p {{ mylist }}
+        //script(type='text/javascript', src='/js/modernizr.custom.28468.js')
+        //script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
 
         script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js')
 
         //script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js')
-        script(src='js/app.min.js')
+        script(src='/js/app.min.js')
+
+

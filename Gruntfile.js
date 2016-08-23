@@ -9,7 +9,11 @@ module.exports = function (grunt) {
 
 
     // JS files
-    var jsfiles = [ "app/js/submission.js", "app/js/list.js", "app/js/user-session.js" ];
+    var jsfiles = [
+        "app/js/submission.js",
+        "app/js/list.js",
+        "app/js/user-session.js",
+        "app/js/gameController.js" ];
 
     grunt.initConfig({
 
@@ -52,7 +56,11 @@ module.exports = function (grunt) {
             jade: {
                 files: './app/templates/**/*.jade',
                 tasks: ['jade']
-            }
+            },
+            js: {
+                files: './app/js/**/*.js',
+                tasks: ['uglify']
+            },
         },
 
         // Sass
@@ -77,16 +85,6 @@ module.exports = function (grunt) {
         },
 
         jade: {
-            //ngTmpls: {
-            //    options: {
-            //        client: true,
-            //        amd: false,
-            //        namespace: 'ngTmpls'
-            //    },
-            //    files: {
-            //        './www/js/templates.min.js': ['./app/templates/layout/*.jade', './app/templates/modules/*.jade', './app/templates/layout/main.jade']
-            //    }
-            //},
             compile: {
                 options: {
                     data: {
