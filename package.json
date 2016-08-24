@@ -4,6 +4,7 @@
   "description": "test",
   "main": "app/app.js",
   "dependencies": {
+    "angular-route": "^1.5.8",
     "bcrypt-nodejs": "latest",
     "body-parser": "^1.15.2",
     "client-sessions": "^0.7.0",
@@ -12,6 +13,7 @@
     "express": "^4.13.3",
     "hover.css": "^2.0.2",
     "jade": "^1.11.0",
+    "moment": "^2.14.1",
     "mongodb": "^2.2.5",
     "mongoose": "^4.5.9",
     "passport": "^0.3.2",

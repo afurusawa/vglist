@@ -1,8 +1,8 @@
 'use strict';
 
-var listApp = angular.module('listApp', []);
+angular.module('app')
 
-listApp.controller('listController', ['$scope', '$http', '$log', function($scope, $http, $log) {
+.controller('listController', ['$scope', '$http', '$log', function($scope, $http, $log) {
 
     $log.log("list controller active");
 
@@ -21,7 +21,7 @@ listApp.controller('listController', ['$scope', '$http', '$log', function($scope
 
 
     // ng-click function to add a game to user's game list
-    $scope.addToList = function(id, name, index) {
+    $scope.addToList = function(id, name) {
         console.log("clicked add button w/ id: " + id.toString());
 
         var postData = {

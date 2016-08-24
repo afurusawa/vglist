@@ -9,7 +9,7 @@ var bodyParser      = require('body-parser');
 var flash           = require('connect-flash');
 
 // Custom modules
-var games           = require('./app/js/games.js');
+var REST            = require('./app/services/RESTService.js');
 var configDB        = require('./app/config/database.js');
 
 // Express config
@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use('/static', express.static(__dirname + '/www'));
 app.use(express.static(__dirname + '/www'));
-app.use(express.static(__dirname + '/app/js'));
+app.use(express.static(__dirname + '/app/services'));
 app.use(express.static(__dirname + '/app/config'));
 
 // Jade
@@ -58,13 +58,13 @@ var server = app.listen(8080, function () {
 // REST API
 
 // GET
-app.get('/allGames', games.findAll);
-app.get('/myGames', games.findGamesByUser);
-app.get('/game/:id', games.findByGameId);
-app.get('/search/:searchString', games.findGameBySearch);
+app.get('/allGames', REST.findAll);
+app.get('/myGames', REST.findGamesByUser);
+app.get('/game/:id', REST.findByGameId);
+app.get('/search/:searchString', REST.findGameBySearch);
 
-app.get('/profile/:id', games.findProfile);
+app.get('/profile/:id', REST.findProfile);
 
 // POST
-app.post('/addGame', games.addGame);
-app.post('/addToGameList', games.addToGameList);
+app.post('/addGame', REST.addGame);
+app.post('/addToGameList', REST.addToGameList);

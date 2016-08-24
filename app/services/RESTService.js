@@ -1,7 +1,7 @@
 
 var Game = require('../models/game');
 var GameList = require('../models/gamelist');
-
+var moment = require('moment');
 
 // addGame()
 exports.addGame = function(req, res) {
@@ -12,7 +12,13 @@ exports.addGame = function(req, res) {
     newGame.title = post.title;
     newGame.series = post.series;
     //newGame.platform = post.platform;
-    //newGame.released = new Date(post.released);
+
+
+
+    newGame.released = new Date(post.released);
+
+    moment(post.released, "MMMM DD, YYYY");
+
     newGame.developer = post.developer;
     newGame.publisher = post.publisher;
 
@@ -25,11 +31,9 @@ exports.addGame = function(req, res) {
 };
 
 exports.findAll = function(req, res) {
-
     Game.find({}, function(err, games) {
         res.send(games);
     });
-
 };
 
 exports.findGamesByUser = function(req, res) {
@@ -40,7 +44,7 @@ exports.findGamesByUser = function(req, res) {
 
 exports.findByGameId = function(req, res) {
     var id = req.params.id;
-    console.log('retrieving game: ' + id);
+    //console.log('retrieving game: ' + id);
     Game.find({ _id : id }, function(err, game) {
         console.log(game);
         res.render('game.jade', { user : req.user, game : game[0] });
@@ -49,7 +53,7 @@ exports.findByGameId = function(req, res) {
 
 exports.findGameBySearch = function(req, res) {
     var searchString = req.params.searchString;
-    console.log('searching for: ' + searchString);
+    //console.log('searching for: ' + searchString);
     Game.find({ title : new RegExp('^' + searchString + '.*', "i") }, function(err, games) {
        res.send(games);
     });

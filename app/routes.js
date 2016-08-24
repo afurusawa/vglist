@@ -49,7 +49,7 @@ module.exports = function(app, passport) {
 
 
     app.get('/submit-game', function(req, res) {
-        res.render('submission.jade');
+        res.render('submit-game.jade');
     });
 
     app.get('/about', function(req, res) {

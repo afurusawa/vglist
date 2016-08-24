@@ -1,16 +1,10 @@
 'use strict';
 
-var userSessionApp = angular.module('userSessionApp', []);
+angular.module('app')
 
-userSessionApp.controller('userSessionController', ['$scope', '$http', '$log', function($scope, $http, $log) {
+.controller('searchController', ['$scope', '$http', '$log', function($scope, $http, $log) {
 
-
-
-}]);
-
-userSessionApp.controller('searchBarController', ['$scope', '$http', '$log', function($scope, $http, $log) {
-
-    // init
+    // init (I need this because when I do '$scope.search.length' it'll give me error saying I can't get length of undefined)
     $scope.search = "";
 
     $scope.$watch('search', function() {
@@ -25,6 +19,6 @@ userSessionApp.controller('searchBarController', ['$scope', '$http', '$log', fun
             });
         }
 
-    })
+    });
 
 }]);

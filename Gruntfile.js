@@ -10,10 +10,12 @@ module.exports = function (grunt) {
 
     // JS files
     var jsfiles = [
-        "app/js/submission.js",
-        "app/js/list.js",
-        "app/js/user-session.js",
-        "app/js/gameController.js" ];
+        "app/app.js",
+        "app/controllers/gameController.js",
+        "app/controllers/listController.js",
+        "app/controllers/searchController.js",
+        "app/controllers/submitGameController.js"
+    ];
 
     grunt.initConfig({
 
@@ -39,6 +41,9 @@ module.exports = function (grunt) {
         // for js
         uglify: {
             dev: {
+                options: {
+                    beautify: true
+                },
                 files: {
                     'www/js/app.min.js': jsfiles
                 }
@@ -58,9 +63,9 @@ module.exports = function (grunt) {
                 tasks: ['jade']
             },
             js: {
-                files: './app/js/**/*.js',
+                files: ['./app/controllers/**/*.js', './app/app.js'],
                 tasks: ['uglify']
-            },
+            }
         },
 
         // Sass

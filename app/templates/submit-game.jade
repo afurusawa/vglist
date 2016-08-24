@@ -1,0 +1,49 @@
+extends ./layout.jade
+
+block title
+    title Submit Game | vgstats
+
+block content
+
+    .form(ng-controller="submitGameController")
+        // what would be cool here is to check the games db and submissions db to see if the title already exists
+        // e.g. game already exists in db OR game info has already been submitted by another user
+        p title
+        input(type="text", ng-model="game.title", name="title", placeholder="title" required)
+
+
+        p platform(s)
+        p platforms are distinguished via generations (https://en.wikipedia.org/wiki/Video_game_console)
+
+        .platform
+            .platform__computer
+                .computer__unit(ng-click='toggle()')
+                    p PC
+                .computer__unit
+                    p MAC
+
+            .platform__console
+                .console__unit(ng-click='toggle()', ng-repeat="unit in consoles")
+                    p {{unit.name}}
+
+            .platform__handheld
+                .handheld__unit
+                    p PlayStation Vita
+                    p Sony, 2011
+                .handheld__unit
+                    p Nintendo 3DS
+                    p Nintendo, 2011
+                .handheld__unit
+                    p PlayStation Portable
+                    p Sony, 2004
+                .handheld__unit
+                    p Nintendo DS
+                    p Nintendo, 2011
+                .handheld__unit
+                    p Game Boy Advance
+                    p Nintendo, 2001
+                .handheld__unit
+                    p Game Boy Color
+                    p Nintendo, 1998
+
+        p data = {{game | json}}

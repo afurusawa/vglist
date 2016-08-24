@@ -1,55 +1,7 @@
-doctype html
-html
-    head
-        meta(charset='utf-8')
-        meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-        meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
-        title Test
-        meta(name='description', content='')
-        link(rel='stylesheet', type='text/css', href='/css/app.min.css')
-        link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Roboto:500,400,300')
-        link(rel='stylesheet', type='text/css', href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
-        //link(rel='stylesheet', type='text/css', href='/css/hover-min.css')
+extends ./layout.jade
 
-    body(ng-app="userSessionApp")
+block title
+    title Home | vgstats
 
-        a(href="/submit-game") SUBMIT GAME
-        span &nbsp;|&nbsp;
-        a(href="/about") ABOUT
-        span &nbsp;|&nbsp;
-        a(href="/browse-games") GAMES
-        span &nbsp;|&nbsp;
-
-        if !user
-            a(href='/signup') local signup
-            .login(ng-controller="userSessionController")
-                h1 login
-                form(action='/login', method='post')
-                    input(type='text', name='email', placeholder='email')
-                    input(type='password', name='password', placeholder='password')
-                    input(type="submit", value='login')
-                h1 login using facebook
-                a(href="/auth/facebook") facebook
-        else
-            a(href="/profile")= user
-            span &nbsp;|&nbsp;
-            a(href="/logout") LOGOUT
-
-
-        .searchbar(ng-controller='searchBarController')
-            input(type='text' ng-model='search' placeholder='search for game')
-            .searchbar__results(ng-show='search.length >= 3')
-                p search results
-                p {{results | json}}
-
-
-
-        //script(type='text/javascript', src='/js/modernizr.custom.28468.js')
-        //script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
-
-        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js')
-
-        //script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js')
-        script(src='js/app.min.js')
-
-
+block content
+    h1 main content
