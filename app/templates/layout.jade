@@ -15,37 +15,65 @@ html
 
     body(ng-app='app')
 
-        header.l-top
-            .top-bar(ng-controller='headerController')
+        header.l-top(ng-controller='headerController')
+            .top-bar
                 .top-bar__logo
-                    a(href="/") [logo] vgstats
+                    a(href="/")
+                        i.fa.fa-dot-circle-o
+                .top-bar__search-bar
+                    .search-bar
+                        .search-bar__field
+                            input(type='text' ng-model='search' placeholder='search for game')
+
                 .top-bar__account
                     if !user
                         .account__sign-up
-                            a(href='/signup') Sign Up
-                        .account__login(ng-click='toggle()', ng-show='login.state')
+                            .sign-up__icon
+                                a(href='/signup')
+                                    i.fa.fa-pencil-square-o
+                                    span Sign Up
+                        .account__login
+                            .login__icon(ng-click='toggle()')
+                                i.fa.fa-sign-in
+                                span Login
+
+                        .account__login--fb
+                            a(href="/auth/facebook")
+                                i.fa.fa-facebook
+                                span via Facebook
+
+                        .login__form(ng-show='login.state')
                             form(action='/login', method='post')
                                 input(type='text', name='email', placeholder='email')
                                 input(type='password', name='password', placeholder='password')
                                 input(type="submit", value='login')
-                            a(href="/auth/facebook") facebook
                     else
-                        a(href="/profile")= user
-                        span &nbsp;|&nbsp;
-                        a(href="/logout") LOGOUT
+                        .account__user
+                            if user.facebook
+                                a(href="/profile")= user.facebook.name
+                            else if user.local.username
+                                a(href="/profile")= user.local.username
 
-        section.l-middle
-            .search-bar(ng-controller='searchController')
-                .search-bar__field
-                    input(type='text' ng-model='search' placeholder='search for game')
-                .search-bar__results(ng-show='search.length >= 3', ng-repeat = "game in results")
+                        .account__logout
+                            i.fa.fa-sign-out
+                            a(href="/logout") Logout
+
+            .search-bar__results
+                .results(ng-cloak, ng-show='search.length >= 3', ng-repeat = "game in results")
                     a(href='/game/{{game._id}}') {{game.title}} [id: {{game._id}}]
                         button(ng-click="addToList(game._id, game.title)", ng-disabled='isDisabled') add to list
 
+
+        section.l-middle
             nav
                 ul.menu
                     li.menu__item
-                        a(href='/browse-games') BROWSE GAMES
+                        a(href='/browse-games') NEWS
+                    li.menu__item
+                        a(href='/browse-games') TOP GAMES
+                    li.menu__item
+                        a(href='/browse-games') POPULAR
+                hr
 
             block content
                 h1 content

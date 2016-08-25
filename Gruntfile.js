@@ -59,10 +59,6 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
-            jade: {
-                files: './app/templates/**/*.jade',
-                tasks: ['jade']
-            },
             js: {
                 files: ['./app/controllers/**/*.js', './app/app.js'],
                 tasks: ['uglify']
@@ -99,10 +95,10 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    './www/home.html': './app/templates/home.jade',
-                    './www/submission.html': './app/templates/submission.jade',
-                    './www/about.html': './app/templates/about.jade',
-                    './www/games.html': './app/templates/games.jade'
+                    //'./www/home.html': './app/templates/home.jade',
+                    //'./www/submission.html': './app/templates/submission.jade',
+                    //'./www/about.html': './app/templates/about.jade',
+                    //'./www/games.html': './app/templates/games.jade'
                 }
             }
         }

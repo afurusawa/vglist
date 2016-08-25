@@ -121,12 +121,17 @@ angular.module('app')
 
     // ng-click function to add a game to user's game list
     $scope.submitGame = function(id, name, index) {
-        console.log("clicked add button w/ id: " + id.toString());
 
         var postData = {
-            gameId      : id,
-            gameName    : name
+            title       : $scope.game.title,
+            series      : $scope.game.series,
+            released    : $scope.game.released,
+            developer   : $scope.game.developer,
+            publisher   : $scope.game.publisher,
+            platform    : $scope.platformData
         };
+
+        //console.log(JSON.stringify(postData, null, 4));
 
         // remember when doing a post, the data needs to be in JSON format i.e. {id : id}
         $http.post('/addGame', postData).then(function(res) {

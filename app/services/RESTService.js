@@ -11,14 +11,8 @@ exports.addGame = function(req, res) {
     var newGame = new Game();
     newGame.title = post.title;
     newGame.series = post.series;
-    //newGame.platform = post.platform;
-
-
-
-    newGame.released = new Date(post.released);
-
-    moment(post.released, "MMMM DD, YYYY");
-
+    newGame.platform = post.platform;
+    newGame.released = post.released;
     newGame.developer = post.developer;
     newGame.publisher = post.publisher;
 

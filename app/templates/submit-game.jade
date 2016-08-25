@@ -1,4 +1,4 @@
-extends ./layout.jade
+extends ./layout
 
 block title
     title Submit Game | vgstats
@@ -11,7 +11,8 @@ block content
 
         input(type="text", ng-model="game.title", name="title", placeholder="title" required)
         input(type="text", ng-model="game.series", name="series", placeholder="series")
-        input(type="text", ng-model="game.released", name="released", placeholder="DD MMM, YYYY (e.g. 01 Jan, 1970)" required)
+        input(type="date", ng-model="game.released", ng- name="released", placeholder="DD MMM, YYYY (e.g. 01 Jan, 1970)" required)
+        p {{error}}
         input(type="text", ng-model="game.developer", name="developer", placeholder="developer(s) (separate by comma)" required)
         input(type="text", ng-model="game.publisher", name="publisher", placeholder="publisher(s) (separate by comma)" required)
 

@@ -1,13 +1,10 @@
-extends ./layout
+extends ./layout.jade
 
 block title
     title Browse Games | huzzah
 
 block content
-    .game(ng-controller="listController", ng-repeat="game in list")
-        a(href='/game/{{game._id}}') {{game.title}} [id: {{game._id}}]
-            button(ng-click="addToList(game._id, game.title)", ng-disabled='isDisabled') {{button}}
-
-        br
-        br
-        p {{ mylist }}
+    .form(ng-controller="listController")
+        .game(ng-repeat="game in list")
+            a(href='/game/{{game._id}}') {{game.title}}
+                button(ng-click="addToList(game._id, game.title)", ng-disabled='isDisabled') {{button}}

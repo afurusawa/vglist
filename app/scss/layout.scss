@@ -2,6 +2,7 @@
   position: fixed;
   width: 100%;
   height: 50px;
+  z-index: 10;
 }
 .l-middle {
   position: absolute;
@@ -12,5 +13,6 @@
 .l-bottom {
   position: absolute;
   bottom: 0;
-  background-color: lightcoral;
+  width: 100%;
+  background-color: darkslategrey;
 }
