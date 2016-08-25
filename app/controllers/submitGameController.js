@@ -4,8 +4,7 @@ angular.module('app')
 
 .controller('submitGameController', ['$scope', '$http', '$log', function($scope, $http, $log) {
 
-    console.log("WHY THE FUCK IS THIS NOT LOADING");
-    //var platformData = new Array();
+    $scope.platformData = [];
 
     $scope.consoles = [
         {
@@ -70,12 +69,54 @@ angular.module('app')
         }
     ];
 
+    $scope.handhelds = [
+        {
+            name            : "PlayStation Vita",
+            manufacturer    : "Sony",
+            state           : false
+        },
+        {
+            name            : "Nintendo 3DS",
+            manufacturer    : "Nintendo",
+            state           : false
+        },
+        {
+            name            : "PlayStation Portable",
+            manufacturer    : "Sony",
+            state           : false
+        },
+        {
+            name            : "Nintendo DS",
+            manufacturer    : "Nintendo",
+            state           : false
+        },
+        {
+            name            : "Game Boy Advance",
+            manufacturer    : "Nintendo",
+            state           : false
+        },
+        {
+            name            : "Game Boy Color",
+            manufacturer    : "Nintendo",
+            state           : false
+        }
+    ];
+
+    $scope.checkmyshit = function() {
+
+        console.log($scope.platformData);
+    };
 
     $scope.toggle = function() {
         this.unit.state = !this.unit.state;
 
-        if (this.unit.state) {}
-
+        var platformList = [];
+        for (var i = 0; i < $scope.consoles.length; i++) {
+            if ($scope.consoles[i].state) {
+                platformList.push($scope.consoles[i].name);
+            }
+        }
+        $scope.platformData = platformList;
     };
 
     // ng-click function to add a game to user's game list

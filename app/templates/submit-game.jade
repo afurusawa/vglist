@@ -8,42 +8,28 @@ block content
     .form(ng-controller="submitGameController")
         // what would be cool here is to check the games db and submissions db to see if the title already exists
         // e.g. game already exists in db OR game info has already been submitted by another user
-        p title
+
         input(type="text", ng-model="game.title", name="title", placeholder="title" required)
+        input(type="text", ng-model="game.series", name="series", placeholder="series")
+        input(type="text", ng-model="game.released", name="released", placeholder="DD MMM, YYYY (e.g. 01 Jan, 1970)" required)
+        input(type="text", ng-model="game.developer", name="developer", placeholder="developer(s) (separate by comma)" required)
+        input(type="text", ng-model="game.publisher", name="publisher", placeholder="publisher(s) (separate by comma)" required)
 
 
         p platform(s)
         p platforms are distinguished via generations (https://en.wikipedia.org/wiki/Video_game_console)
 
         .platform
-            .platform__computer
-                .computer__unit(ng-click='toggle()')
-                    p PC
-                .computer__unit
-                    p MAC
-
             .platform__console
-                .console__unit(ng-click='toggle()', ng-repeat="unit in consoles")
+                .console__unit(ng-click='toggle()', ng-class='{ selected : unit.state }' ng-repeat="unit in consoles")
                     p {{unit.name}}
 
-            .platform__handheld
-                .handheld__unit
-                    p PlayStation Vita
-                    p Sony, 2011
-                .handheld__unit
-                    p Nintendo 3DS
-                    p Nintendo, 2011
-                .handheld__unit
-                    p PlayStation Portable
-                    p Sony, 2004
-                .handheld__unit
-                    p Nintendo DS
-                    p Nintendo, 2011
-                .handheld__unit
-                    p Game Boy Advance
-                    p Nintendo, 2001
-                .handheld__unit
-                    p Game Boy Color
-                    p Nintendo, 1998
+                .platform__handheld
+                    .handheld__unit(ng-click='toggle()', ng-class='{ selected : unit.state }' ng-repeat="unit in handhelds")
+                        p {{unit.name}}
+        .submit-btn
+            button(ng-click='submitGame()') SUBMIT ENTRY
+
 
         p data = {{game | json}}
+        p platform data = {{platformData}}

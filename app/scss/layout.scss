@@ -1,0 +1,16 @@
+.l-top {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+}
+.l-middle {
+  position: absolute;
+  margin-top: 50px;
+  width: 100%;
+  height: 100vh;
+}
+.l-bottom {
+  position: absolute;
+  bottom: 0;
+  background-color: lightcoral;
+}

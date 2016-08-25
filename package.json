@@ -20,7 +20,8 @@
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "~0.1.5",
     "passport-local": "~0.1.6",
-    "passport-twitter": "~1.0.2"
+    "passport-twitter": "~1.0.2",
+    "pug": "^0.1.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.0.3",
@@ -39,8 +40,6 @@
     "grunt-text-replace": "~0.4.0",
     "grunt-watchify": "^0.1.0",
     "matchdep": "~0.3.0",
-    "normalize.css": "^4.2.0",
-    "pug": "^0.1.0",
     "require-dir": "^0.3.0"
   }
 }

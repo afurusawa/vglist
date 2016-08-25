@@ -1,0 +1,82 @@
+.form {
+
+  width: 100%;
+
+  input {
+    width: 50%;
+
+    font-size: 18px;
+    font-family: 'Dosis', sans-serif;
+    border: 1px solid #333333;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  button {
+    font-size: 18px;
+    font-family: 'Dosis', sans-serif;
+    background-color: white;
+    border: 1px solid #333333;
+    border-radius: 3px;
+
+    padding: 10px 20px;
+    margin: 5px;
+
+    &:hover {
+      background-color: #cccccc;
+    }
+  }
+}
+.platform {
+
+  .platform__computer {
+
+  }
+
+  .platform__console {
+
+    display: inline-block;
+    width: 100%;
+
+    .console__unit {
+
+      border: 1px solid #333333;
+      border-radius: 5px;
+      display: inline-block;
+      margin: 5px;
+      width: 10%;
+
+      p {
+        text-align: center;
+      }
+
+      &.selected {
+        background-color: lightgreen;
+      }
+    }
+  }
+
+  .platform__handheld {
+    display: inline-block;
+    width: 100%;
+
+    .handheld__unit {
+
+      border: 1px solid #333333;
+      border-radius: 5px;
+      display: inline-block;
+      margin: 5px;
+      width: 10%;
+
+      p {
+        text-align: center;
+      }
+
+      &.selected {
+        background-color: lightblue;
+      }
+    }
+  }
+
+
+}

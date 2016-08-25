@@ -57,7 +57,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/browse-games', function(req, res) {
-        res.render('games.jade', { user : req.user });
+        res.render('browse-games.jade', { user : req.user });
     });
 
 

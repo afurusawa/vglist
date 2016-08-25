@@ -8,7 +8,7 @@ angular.module('app')
     $scope.search = "";
 
     $scope.$watch('search', function() {
-        console.log("execute query to show search results");
+        //console.log("execute query to show search results");
 
         if($scope.search.length >= 3) {
             // remember when doing a post, the data needs to be in JSON format i.e. {id : id}
