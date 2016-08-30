@@ -10,6 +10,7 @@ var gameListItemSchema = mongoose.Schema({
 
 var gameListSchema = mongoose.Schema({
     userId  : mongoose.Schema.Types.ObjectId,
+    username : String,
     gameList : [gameListItemSchema]
 });
 

@@ -1,10 +1,15 @@
+var mongoose    = require('mongoose');
+var Game        = require('../models/game');
+var GameList    = require('../models/gamelist');
+var moment      = require('moment');
+var fs = require('fs');
 
-var Game = require('../models/game');
-var GameList = require('../models/gamelist');
-var moment = require('moment');
 
 // addGame()
 exports.addGame = function(req, res) {
+
+    //console.log('uploading image file: ' + JSON.stringify(req.file, null, 4));
+    //console.log('uploading image file: ' + JSON.stringify(req.file, null, 4));
 
     var post = req.body;
 
@@ -15,6 +20,8 @@ exports.addGame = function(req, res) {
     newGame.released = post.released;
     newGame.developer = post.developer;
     newGame.publisher = post.publisher;
+    //newGame.img.data = fs.readFileSync(req.file.path);
+    //newGame.img.contentType = req.file.mimetype;
 
     newGame.save(function(err) {
         if (err)
@@ -37,12 +44,22 @@ exports.findGamesByUser = function(req, res) {
 };
 
 exports.findByGameId = function(req, res) {
+
     var id = req.params.id;
-    //console.log('retrieving game: ' + id);
+
     Game.find({ _id : id }, function(err, game) {
-        console.log(game);
-        res.render('game.jade', { user : req.user, game : game[0] });
-    })
+
+        // Format img if exists
+        // var img = "";
+        // if(!game[0].img.data) {
+        //    img = new Buffer(game[0].img.data).toString('base64');
+        // }
+
+        // Format date to MMMM DD, YYYY
+        var released = moment(game[0].released).format('MMMM DD, YYYY');
+
+        res.render('game.jade', { user : req.user, game : game[0], released : released/*, img : img*/ });
+    });
 };
 
 exports.findGameBySearch = function(req, res) {
@@ -51,7 +68,26 @@ exports.findGameBySearch = function(req, res) {
     Game.find({ title : new RegExp('^' + searchString + '.*', "i") }, function(err, games) {
        res.send(games);
     });
-}
+};
+
+
+exports.findGameFromUser = function(req, res) {
+    var userId = req.params.uid;
+    var gameId = req.params.gid;
+
+    console.log(gameId);
+
+    GameList.findOne({
+        $and: [
+            { userId : req.user._id },
+            { 'gameList.gameId': mongoose.Types.ObjectId(gameId) }
+        ]
+    }, function(err, game) {
+        console.log(game);
+        res.send(game);
+    });
+};
+
 
 exports.addToGameList = function(req, res) {
 
@@ -69,9 +105,19 @@ exports.addToGameList = function(req, res) {
 
             // create new
             var newGameList = new GameList();
+            var username = "";
 
             // link userId
             newGameList.userId = req.user._id;
+
+            // link username (check if fb login or local
+            if (!req.user.facebook.name) {
+                username = req.user.local.username;
+            }
+            else {
+                username = req.user.facebook.name;
+            }
+            newGameList.username = username;
 
             // add game
             newGameList.gameList.push({
@@ -123,6 +169,39 @@ exports.addToGameList = function(req, res) {
     res.end();
 };
 
+exports.findAllUsers = function(req, res) {
+    GameList.find({}, function(err, gameList) {
+       res.send(gameList);
+    });
+};
 
 exports.findProfile = function(req, res) {
+    var userId = req.params.id;
+
+    GameList.find({ userId : userId }, function(err, gameList) {
+        res.render('user-profile.jade', { user : req.user, gameList : gameList[0] });
+    });
+};
+
+
+
+
+exports.updateGameRating = function(req, res) {
+    var post = req.body;
+
+    GameList.findOne({
+        $and: [
+            { userId : req.user._id },
+            { 'gameList.gameId': post.gameId }
+        ]
+    },
+    function(err, game) {
+        console.log(game);
+        console.log(game.gameList[0].rating + "==>" + post.rating);
+        game.gameList[0].rating = post.rating;
+        game.save(function (err) {
+            if (err) console.log("ERROR CHANGING THE RATING");
+            res.end();
+        });
+    });
 };

@@ -1,0 +1,12 @@
+extends ./layout
+
+block title
+    if user
+        if user.facebook
+            title= user.facebook.name
+        if user.local.username
+            title= user.local.username
+
+block content
+    // if logged in, show personal stats like games played, estimated hours spent gaming, etc.
+    span #{gameList}

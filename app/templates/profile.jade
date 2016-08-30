@@ -7,22 +7,21 @@ block title
         title= user.local.username
 
 block content
-    // if logged in, show personal stats like games played, estimated hours spent gaming, etc.
-    h1 Dashboard
-    .currently-playing
-        //list out the games currently playing
-        .currently-playing__game
-            p Stardew Valley | 143 hrs
 
-    .stats
-        .stats__games-played
-            p 76 games played
+        // if logged in, show personal stats like games played, estimated hours spent gami
+        h1 Dashboard
+        .currently-playing
+            //list out the games currently playing
+            .currently-playing__game
+                p Stardew Valley | 143 hrs
 
-        .stats__total-hours-spent
-            p 3556 hours spent gaming
+        .stats
+            .stats__games-played
+                p 76 games played
 
-        // pie chart. use d3?
-        .stats__platforms
-            p 10% nintendo | 87% pc | 3% playstation
+            .stats__total-hours-spent
+                p 3556 hours spent gaming
 
-
+            // pie chart. use d3?
+            .stats__platforms
+                p 10% nintendo | 87% pc | 3% playstation

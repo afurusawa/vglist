@@ -4,22 +4,21 @@ block title
     title Submit Game | vgstats
 
 block content
-
-    .form(ng-controller="submitGameController")
+    form(action='/addGame', method='post', enctype='multipart/form-data"', ng-controller="submitGameController").form
         // what would be cool here is to check the games db and submissions db to see if the title already exists
         // e.g. game already exists in db OR game info has already been submitted by another user
 
+        //input(type='file', name='gameImage')
+
         input(type="text", ng-model="game.title", name="title", placeholder="title" required)
         input(type="text", ng-model="game.series", name="series", placeholder="series")
-        input(type="date", ng-model="game.released", ng- name="released", placeholder="DD MMM, YYYY (e.g. 01 Jan, 1970)" required)
-        p {{error}}
+        input(type="date", ng-model="game.released", ng- name="released", required)
         input(type="text", ng-model="game.developer", name="developer", placeholder="developer(s) (separate by comma)" required)
         input(type="text", ng-model="game.publisher", name="publisher", placeholder="publisher(s) (separate by comma)" required)
 
-
-        p platform(s)
         p platforms are distinguished via generations (https://en.wikipedia.org/wiki/Video_game_console)
 
+        input(type='hidden', name="game.platform" value='{{platformData}}')
         .platform
             .platform__console
                 .console__unit(ng-click='toggle()', ng-class='{ selected : unit.state }' ng-repeat="unit in consoles")
@@ -28,8 +27,11 @@ block content
                 .platform__handheld
                     .handheld__unit(ng-click='toggle()', ng-class='{ selected : unit.state }' ng-repeat="unit in handhelds")
                         p {{unit.name}}
+
+        input(type='submit' value='SUBMIT ENTRY')
         .submit-btn
-            button(ng-click='submitGame()') SUBMIT ENTRY
+
+            //button(ng-click='submitGame()') SUBMIT ENTRY try
 
 
         p data = {{game | json}}

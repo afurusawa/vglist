@@ -102,11 +102,6 @@ angular.module('app')
         }
     ];
 
-    $scope.checkmyshit = function() {
-
-        console.log($scope.platformData);
-    };
-
     $scope.toggle = function() {
         this.unit.state = !this.unit.state;
 
@@ -120,7 +115,7 @@ angular.module('app')
     };
 
     // ng-click function to add a game to user's game list
-    $scope.submitGame = function(id, name, index) {
+    $scope.submitGame = function() {
 
         var postData = {
             title       : $scope.game.title,
@@ -131,13 +126,19 @@ angular.module('app')
             platform    : $scope.platformData
         };
 
-        //console.log(JSON.stringify(postData, null, 4));
+        console.log(JSON.stringify(postData, null, 4));
 
-        // remember when doing a post, the data needs to be in JSON format i.e. {id : id}
-        $http.post('/addGame', postData).then(function(res) {
-            console.log("res: " + JSON.stringify(res, null, 4));
+        var config = {
+            headers : {
+                'Content-Type' : 'multipart/form-data'
+            }
+        };
+        // remember when doing a post, the 'postData' needs to be in JSON format i.e. {id : id}
+        $http.post('/addGame', postData, config).then(function(res) {
+            // console.log("res: " + JSON.stringify(res, null, 4));
             // if added successfully, disable 'add to list button'
         });
+
     };
 
 }]);

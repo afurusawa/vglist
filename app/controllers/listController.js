@@ -12,8 +12,8 @@ angular.module('app')
         $scope.list = res.data; //array
     });
 
-    $http.get("/myGames").then(function(res) {
-        myGames = res.data.gameList; //array
+    $http.get("/allUsers").then(function(res) {
+       $scope.userlist = res.data;
     });
 
     // defaults

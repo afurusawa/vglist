@@ -8,6 +8,8 @@ var gameSchema = mongoose.Schema({
     released    : Date,
     developer   : String,
     publisher   : String,
+    //img         : { data: Buffer, contentType: String },
+
 
     metadata : {
         userRating      : [Number],

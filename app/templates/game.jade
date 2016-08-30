@@ -1,60 +1,34 @@
-doctype html
-html
-    head
-        meta(charset='utf-8')
-        meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-        meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
-        title Test
-        meta(name='description', content='')
-        link(rel='stylesheet', type='text/css', href='/css/app.min.css')
-        link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Roboto:500,400,300')
-        link(rel='stylesheet', type='text/css', href='//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
-        //link(rel='stylesheet', type='text/css', href='/css/hover-min.css')
+extends ./layout.jade
 
-    body
-        a(href="/") HOME
-        span &nbsp;|&nbsp;
-        a(href="/submit-game") SUBMIT GAME
-        span &nbsp;|&nbsp;
-        a(href="/about") ABOUT
-        span &nbsp;|&nbsp;
-        a(href="/browse-games") GAMES
-        span &nbsp;|&nbsp;
+block title
+    title #{game.title}
+
+block content
+    .something(ng-controller='gameController')
 
         if !user
-            a(href='/signup') local signup
-            .login
-                h1 login
-                form(action='/login', method='post')
-                    input(type='text', name='email', placeholder='email')
-                    input(type='password', name='password', placeholder='password')
-                    input(type="submit", value='login')
-                h1 login using facebook
-                a(href="/auth/facebook") facebook
-        else
-            a(href="/profile")= user
-            span &nbsp;|&nbsp;
-            a(href="/logout") LOGOUT
+            - user = { _id : 0 }
 
-        .game-content
-            br
-            h1 title: #{game.title} | #{game.platform}
-            .rate
-                button(ng-click="rateGame") Rate
-            h3 #{game.released} | #{game.series}
-            h3 developer(s): #{game.developer}
-            h3 publisher(s): #{game.publisher}
+        //if #{img}
+        //    img(src='data:image/jpeg;base64,#{img}')
+        .game(ng-init='init = { userId : "#{user._id}", gameId : "#{game._id}" }')
+            span #{game.title}
+            span #{game.platform}
+            span #{game.series}
+            span #{released}
+            span #{game.developer}
+            span #{game.publisher}
+            span #{game.metadata.userRating}
+            span #{game.metadata.criticRating}
 
-            h2 #{game.metadata.userRating} | #{game.metadata.criticRating}
+        .rate(ng-if='"#{user._id}".localeCompare("0")')
+            button(ng-click="rateGame()" ng-show='rateButton.visible') Rate
+            input(type='text', ng-hide='rateButton.visible', ng-model='$parent.rating')
+
+        .add-to-list-btn(ng-if='"#{user._id}".localeCompare("0")')
+            button(ng-click='addToList("#{game._id}", "#{game.title}")') add to list
 
 
-
-        //script(type='text/javascript', src='/js/modernizr.custom.28468.js')
-        //script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
-
-        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js')
-
-        //script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js')
-        script(src='/js/app.min.js')
-
-
+        p gid: {{init.gameId}}, uid: {{init.userId}}
+        p {{userData}}
+        p {{rating}}

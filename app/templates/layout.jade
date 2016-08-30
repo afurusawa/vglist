@@ -51,15 +51,15 @@ html
                         .account__user
                             if user.facebook
                                 a(href="/profile")= user.facebook.name
-                            else if user.local.username
+                            if user.local
                                 a(href="/profile")= user.local.username
 
                         .account__logout
                             i.fa.fa-sign-out
                             a(href="/logout") Logout
 
-            .search-bar__results
-                .results(ng-cloak, ng-show='search.length >= 3', ng-repeat = "game in results")
+            .search-bar__results(ng-hide='search.length < 3', ng-cloak)
+                .results(ng-show='search.length >= 3', ng-repeat = "game in results")
                     a(href='/game/{{game._id}}') {{game.title}} [id: {{game._id}}]
                         button(ng-click="addToList(game._id, game.title)", ng-disabled='isDisabled') add to list
 
@@ -90,4 +90,4 @@ html
         script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js')
         script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js")
         //script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js')
-        script(src='js/app.min.js')
+        script(src='/js/app.min.js')
