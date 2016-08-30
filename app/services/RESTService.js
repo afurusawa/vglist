@@ -82,9 +82,28 @@ exports.findGameFromUser = function(req, res) {
             { userId : req.user._id },
             { 'gameList.gameId': mongoose.Types.ObjectId(gameId) }
         ]
-    }, function(err, game) {
-        console.log(game);
-        res.send(game);
+    },
+    function(err, game) {
+
+        if(!game) {
+            game = 0;
+            console.log("change to" + game);
+            res.send(game);
+        }
+        else {
+            //send only the pertaining game in gameList
+            for (var i = 0; i < game.gameList.length; i++) {
+                console.log("iterating: " + game.gameList[i].gameId + " == " + mongoose.Types.ObjectId(gameId));
+                if(game.gameList[i].gameId == gameId) {
+                    console.log("found it~");
+
+                    console.log("sending " + game.gameList[i]);
+                    res.send(game.gameList[i]);
+                }
+            }
+        }
+        console.log('reached');
+        res.end();
     });
 };
 
@@ -198,7 +217,20 @@ exports.updateGameRating = function(req, res) {
     function(err, game) {
         console.log(game);
         console.log(game.gameList[0].rating + "==>" + post.rating);
-        game.gameList[0].rating = post.rating;
+
+        //send only the pertaining game in gameList
+        for (var i = 0; i < game.gameList.length; i++) {
+            //console.log("iterating: " + game.gameList[i].gameId + " == " + mongoose.Types.ObjectId(gameId));
+            if(game.gameList[i].gameId == post.gameId) {
+                console.log("found it~");
+
+                // change rating
+                game.gameList[i].rating = post.rating;
+            }
+        }
+
+
+
         game.save(function (err) {
             if (err) console.log("ERROR CHANGING THE RATING");
             res.end();

@@ -26,7 +26,7 @@ block content
             input(type='text', ng-hide='rateButton.visible', ng-model='$parent.rating')
 
         .add-to-list-btn(ng-if='"#{user._id}".localeCompare("0")')
-            button(ng-click='addToList("#{game._id}", "#{game.title}")') add to list
+            button(ng-click='addToList("#{game._id}", "#{game.title}")', ng-disabled="gameState.added") {{gameState.text}}
 
 
         p gid: {{init.gameId}}, uid: {{init.userId}}

@@ -8,6 +8,10 @@ angular.module('app')
 
     $scope.userData = "";
     $scope.rating = 0;
+    $scope.gameState = {
+        added : false,
+        text : "add to list"
+    };
 
     var initRan = false;
 
@@ -25,12 +29,22 @@ angular.module('app')
             });
         }
 
+        // get info about the game and check if it has a rating/is added the user's list
         if (newVal[0] && !initRan) {
             $http.get('/' + $scope.init.userId + '/' + $scope.init.gameId).then(function(res) {
                 console.log('getting user info about the game');
                 initRan = true; //set flag so it doesn't run again.
+
                 $scope.userData = res.data;
-                var game = res.data.gameList[0];
+                var game = res.data;
+
+                // if something was returned, that means its already been added
+                if(game) {
+                    $scope.gameState.added = true;
+                    $scope.gameState.text = "added";
+                }
+
+                // if rating exists, show it
                 $scope.rating = game.rating;
                 if($scope.rating > 0) {
                     $scope.rateButton.visible = false;
@@ -60,6 +74,9 @@ angular.module('app')
         $http.post('/addToGameList', postData).then(function(res) {
             console.log("res: " + JSON.stringify(res, null, 4));
             // if added successfully, disable 'add to list button'
+
+            $scope.gameState.added = true;
+            $scope.gameState.text = "added";
         });
     };
 
