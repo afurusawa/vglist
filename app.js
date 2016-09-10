@@ -84,31 +84,34 @@ app.get('/profile/:id', REST.findProfile);
 app.get('/:uid/:gid', REST.findGameFromUser);
 
 // POST
-app.post('/addGame', upload.single('gameImage'), function(req, res) {
-    //console.log('uploading image file: ' + JSON.stringify(req.file, null, 4));
-    //console.log('uploading image file: ' + JSON.stringify(req.file, null, 4));
+//app.post('/addGame', upload.single('gameImage'), function(req, res) {
+//    //console.log('uploading image file: ' + JSON.stringify(req.file, null, 4));
+//    //console.log('uploading image file: ' + JSON.stringify(req.file, null, 4));
+//
+//    var post = req.body;
+//
+//
+//    var Game = require('./app/models/game');
+//    var newGame = new Game();
+//    newGame.title = post.title;
+//    newGame.series = post.series;
+//    newGame.platform = post.platform;
+//    newGame.released = post.released;
+//    newGame.developer = post.developer;
+//    newGame.publisher = post.publisher;
+//    //newGame.img.data = fs.readFileSync(req.file.path);
+//    //newGame.img.contentType = req.file.mimetype;
+//
+//    //newGame.save(function(err) {
+//    //    if (err)
+//    //        console.error('ERROR: could not add game');
+//    //});
+//
+//    res.redirect('back');
+//});
+app.post('/addGame', REST.addGame);
 
-    var post = req.body;
-
-
-    var Game = require('./app/models/game');
-    var newGame = new Game();
-    newGame.title = post.title;
-    newGame.series = post.series;
-    newGame.platform = post.platform;
-    newGame.released = post.released;
-    newGame.developer = post.developer;
-    newGame.publisher = post.publisher;
-    //newGame.img.data = fs.readFileSync(req.file.path);
-    //newGame.img.contentType = req.file.mimetype;
-
-    //newGame.save(function(err) {
-    //    if (err)
-    //        console.error('ERROR: could not add game');
-    //});
-
-    res.redirect('back');
-});
 app.post('/addToGameList', REST.addToGameList);
 
 app.post('/updateGameRating', REST.updateGameRating);
+app.post('/updateHoursPlayed', REST.updateHoursPlayed);

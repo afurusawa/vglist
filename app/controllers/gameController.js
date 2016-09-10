@@ -15,10 +15,10 @@ angular.module('app')
 
     var initRan = false;
 
-    $scope.$watchGroup(['init', 'rating'], function(newVal, oldVal) {
+    $scope.$watchGroup(['init', 'rating', 'hoursPlayed'], function(newVal, oldVal) {
         //console.log(JSON.stringify(newVal[0]) + " " + JSON.stringify(oldVal[0]));
         // if rating is something other than 0
-        if (newVal[1] > 0) {
+        if(newVal[1] > 0 && ()) {
             console.log("updating rating..." + $scope.rating);
             var postData = {
                 gameId : $scope.init.gameId,
@@ -29,8 +29,20 @@ angular.module('app')
             });
         }
 
+        if(newVal[3] > 0) {
+            console.log("updating hours played..." + $scope.hoursPlayed);
+            var postData = {
+                gameId : $scope.init.gameId,
+                hoursPlayed : $scope.hoursPlayed
+            };
+            $http.post('/updateHoursPlayed', postData).then(function(res) {
+               console.log('updated hours played');
+            });
+        }
+
         // get info about the game and check if it has a rating/is added the user's list
-        if (newVal[0] && !initRan) {
+        // apparently I can't run an http.get initially and instead have to do it here because there's an issue with the ng-init values not being set when http.get is run.
+        if(newVal[0] && !initRan) {
             $http.get('/' + $scope.init.userId + '/' + $scope.init.gameId).then(function(res) {
                 console.log('getting user info about the game');
                 initRan = true; //set flag so it doesn't run again.

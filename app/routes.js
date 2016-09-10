@@ -1,11 +1,11 @@
 'use strict';
 
-module.exports = function(app, passport) {
+    module.exports = function(app, passport) {
 
 
-    app.get('/', function(req, res) {
-        res.render('home.jade', { user : req.user });
-    });
+        app.get('/', function(req, res) {
+            res.render('home.jade', { user : req.user });
+        });
 
 
     app.get('/signup', function(req, res) {

@@ -5,7 +5,7 @@ var gameListItemSchema = mongoose.Schema({
     gameName       : String,
     rating         : { type: Number, min: 0, max: 100, default: 0 },
     completed      : { type: Number, default: 0 },
-    hoursPlayed    : Number
+    hoursPlayed    : { type: Number, default: 0 }
 });
 
 var gameListSchema = mongoose.Schema({

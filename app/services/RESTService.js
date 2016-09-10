@@ -237,3 +237,33 @@ exports.updateGameRating = function(req, res) {
         });
     });
 };
+
+exports.updateHoursPlayed = function(req, res) {
+    var post = req.body;
+    GameList.findOne({
+        $and: [
+            { userId : req.user._id },
+            { 'gameList.gameId': post.gameId }
+        ]
+    },
+    function(err, game) {
+        console.log(game);
+        console.log(game.gameList[0].hoursPlayed + "==>" + post.hoursPlayed);
+
+        //send only the pertaining game in gameList
+        for (var i = 0; i < game.gameList.length; i++) {
+            //console.log("iterating: " + game.gameList[i].gameId + " == " + mongoose.Types.ObjectId(gameId));
+            if(game.gameList[i].gameId == post.gameId) {
+                console.log("found it~");
+
+                // change rating
+                game.gameList[i].hoursPlayed = post.hoursPlayed;
+            }
+        }
+
+        game.save(function (err) {
+            if (err) console.log("ERROR CHANGING THE HOURS PLAYED");
+            res.end();
+        });
+    });
+};

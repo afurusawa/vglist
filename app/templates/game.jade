@@ -25,6 +25,9 @@ block content
             button(ng-click="rateGame()" ng-show='rateButton.visible') Rate
             input(type='text', ng-hide='rateButton.visible', ng-model='$parent.rating')
 
+        .hours-played(ng-if='"#{user._id}".localeCompare("0")')
+            input(type='text', ng-model='$parent.hoursPlayed', placeholder="hours played")
+
         .add-to-list-btn(ng-if='"#{user._id}".localeCompare("0")')
             button(ng-click='addToList("#{game._id}", "#{game.title}")', ng-disabled="gameState.added") {{gameState.text}}
 
