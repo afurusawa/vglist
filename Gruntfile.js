@@ -15,7 +15,10 @@ module.exports = function (grunt) {
         "app/controllers/listController.js",
         "app/controllers/searchController.js",
         "app/controllers/submitGameController.js",
-        "app/controllers/headerController.js"
+        "app/controllers/headerController.js",
+        "app/controllers/profileController.js",
+        "app/controllers/dashboardController.js"
+
     ];
 
     grunt.initConfig({

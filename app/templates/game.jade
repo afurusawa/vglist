@@ -23,11 +23,11 @@ block content
 
         .rate(ng-if='"#{user._id}".localeCompare("0")')
             button(ng-click="rateGame()" ng-show='rateButton.visible') Rate
-            input(type='text', ng-hide='rateButton.visible', ng-model='$parent.rating')
+            input(type='text', ng-hide='rateButton.visible', ng-model='$parent.rating', ng-model-options="{ debounce: 1000 }")
             span rating
 
         .hours-played(ng-if='"#{user._id}".localeCompare("0")')
-            input(type='text', ng-model='$parent.hoursPlayed', placeholder="hours played")
+            input(type='text', ng-model='$parent.hoursPlayed', ng-model-options="{ debounce: 1000 }", placeholder="hours played")
             span hours played
 
         .add-to-list-btn(ng-if='"#{user._id}".localeCompare("0")')

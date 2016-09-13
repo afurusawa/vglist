@@ -7,7 +7,6 @@ angular.module('app')
     $log.log("game controller active");
 
     $scope.userData = "";
-    $scope.rating = 0;
     $scope.gameState = {
         added : false,
         addText : "add to list",
@@ -20,10 +19,10 @@ angular.module('app')
     var initRan = false;
 
     $scope.$watchGroup(['init', 'rating', 'hoursPlayed'], function(newVal, oldVal) {
-        console.log(JSON.stringify(newVal[1]) + " " + JSON.stringify(oldVal[1]));
+        console.log(JSON.stringify(newVal[1]) + " " + JSON.stringify(oldVal[1]) + ", " + JSON.stringify(newVal[2]) + " " + JSON.stringify(oldVal[2]));
 
-        // Watch for rating change
-        if((oldVal[1] > 0) && (newVal[1] > 0) && (newVal[1] != oldVal[1])) {
+        // if 'rating' changed by the user, update it in db
+        if((newVal[1] != oldVal[1]) && (typeof oldVal[1] != "undefined")) {
             console.log("updating rating..." + $scope.rating);
             var postData = {
                 gameId : $scope.init.gameId,
@@ -35,7 +34,8 @@ angular.module('app')
         }
 
         // Watch for hoursPlayed change (other than 0 or on-load)
-        if((oldVal[2] > 0) && (newVal[2] > 0) && (newVal[2] != oldVal[2])) {
+        // TODO: what if hours played was changed from X to 0? wrap w/ OR
+        if((newVal[2] != oldVal[2]) && (typeof oldVal[2] != "undefined")) {
             console.log("updating hours played..." + $scope.hoursPlayed);
             var postData = {
                 gameId : $scope.init.gameId,
@@ -51,7 +51,6 @@ angular.module('app')
         if(newVal[0] && !initRan) {
             $http.get('/' + $scope.init.userId + '/' + $scope.init.gameId).then(function(res) {
                 console.log('getting user info about the game');
-                initRan = true; //set flag so it doesn't run again.
 
                 $scope.userData = res.data;
                 var game = res.data;
@@ -63,13 +62,23 @@ angular.module('app')
                 }
 
                 // if rating exists, show it
-                $scope.rating = game.rating;
-                if($scope.rating > 0) {
+                if(game.rating) {
+                    $scope.rating = game.rating;
                     $scope.rateButton.visible = false;
+                }
+                else {
+                    $scope.rating = 0;
                 }
 
                 // update hoursPlayed
-                $scope.hoursPlayed = game.hoursPlayed;
+                if(game.hoursPlayed) {
+                    $scope.hoursPlayed = game.hoursPlayed;
+                }
+                else {
+                    $scope.hoursPlayed = 0;
+                }
+
+
 
                 // completed
                 if (game.completed) {
@@ -79,9 +88,10 @@ angular.module('app')
 
                 // playing now
                 $scope.gameState.playingNow = game.playingNow;
+
+                initRan = true; //set flag so it doesn't run again.
             });
         }
-
     });
 
     // rating init/func.

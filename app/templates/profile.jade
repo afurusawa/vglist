@@ -8,19 +8,35 @@ block title
 
 block content
 
-        // if logged in, show personal stats like games played, estimated hours spent gami
-        h1 Dashboard
-        .currently-playing
-            //list out the games currently playing
-            .currently-playing__game
-                p Stardew Valley | 143 hrs
+    .profile(ng-controller="dashboardController")
+        h1 currently playing
+        .list(ng-repeat="game in allData.currentlyPlaying")
+            a(href='/game/{{game.gameId}}') {{ game.gameName }} | {{ game.hoursPlayed }} hrs
+            span(style='background-color:yellow;') {{ game.rating }}
 
+        h1 completed
+        .list(ng-repeat="game in allData.completed")
+            a(href='/game/{{game.gameId}}') {{ game.gameName }} | {{ game.hoursPlayed }} hrs
+            span(style='background-color:yellow;') {{ game.rating }}
+
+        h1 all
+        .list(ng-repeat="game in allData.gameList")
+            a(href='/game/{{game.gameId}}') {{ game.gameName }} | {{ game.hoursPlayed }} hrs
+            span(style='background-color:yellow;') &nbsp;[{{ game.rating }}]
+
+        p {{ allData.gameList }}
+
+
+
+
+
+        // if logged in, show personal stats like games played, estimated hours spent gami
         .stats
             .stats__games-played
-                p 76 games played
+                p {{ allData.statistics.games }} games played
 
             .stats__total-hours-spent
-                p 3556 hours spent gaming
+                p {{ allData.statistics.hours }} hours spent gaming
 
             // pie chart. use d3?
             .stats__platforms

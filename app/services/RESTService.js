@@ -4,46 +4,31 @@ var GameList    = require('../models/gamelist');
 var moment      = require('moment');
 var fs = require('fs');
 
+// GET
 
-// addGame()
-exports.addGame = function(req, res) {
 
-    //console.log('uploading image file: ' + JSON.stringify(req.file, null, 4));
-    //console.log('uploading image file: ' + JSON.stringify(req.file, null, 4));
-
-    var post = req.body;
-    console.log(JSON.parse(post.platform));
-
-    var newGame = new Game();
-    newGame.title = post.title;
-    newGame.series = post.series;
-    newGame.platform = JSON.parse(post.platform);
-    newGame.released = post.released;
-    newGame.developer = post.developer;
-    newGame.publisher = post.publisher;
-    //newGame.img.data = fs.readFileSync(req.file.path);
-    //newGame.img.contentType = req.file.mimetype;
-
-    newGame.save(function(err) {
-        if (err)
-            console.error('ERROR: could not add game');
-    });
-
-    res.redirect('back');
-};
 
 exports.findAll = function(req, res) {
     Game.find({}, function(err, games) {
         res.send(games);
     });
 };
+exports.findAllUsers = function(req, res) {
+    GameList.find({}, function(err, gameList) {
+        res.send(gameList);
+    });
+};
 
-exports.findGamesByUser = function(req, res) {
-    GameList.find({ userId : req.user._id }, function(err, games) {
+// Used for search functionality to return results in realtime
+exports.findGameBySearch = function(req, res) {
+    var searchString = req.params.searchString;
+    //console.log('searching for: ' + searchString);
+    Game.find({ title : new RegExp('^' + searchString + '.*', "i") }, function(err, games) {
         res.send(games);
     });
 };
 
+// TODO: rename to 'findGameById'
 exports.findByGameId = function(req, res) {
 
     var id = req.params.id;
@@ -63,17 +48,25 @@ exports.findByGameId = function(req, res) {
     });
 };
 
-exports.findGameBySearch = function(req, res) {
-    var searchString = req.params.searchString;
-    //console.log('searching for: ' + searchString);
-    Game.find({ title : new RegExp('^' + searchString + '.*', "i") }, function(err, games) {
-       res.send(games);
+exports.findGameListByUser = function(req, res) {
+    var userId = req.params.uid;
+
+    GameList.findOne({ userId : userId }, function(err, games) {
+        res.send(gamelist.gameList); // the array only
     });
 };
 
 
+exports.findMyGameList = function(req, res) {
+    GameList.find({ userId : req.user._id }, function(err, games) {
+        res.send(games);
+    });
+};
+
+// TODO: rename to 'findMyGameById'
+// Find a single game from your game list
 exports.findGameFromUser = function(req, res) {
-    var userId = req.params.uid;
+    //var userId = req.params.uid;
     var gameId = req.params.gid;
 
     console.log(gameId);
@@ -103,11 +96,48 @@ exports.findGameFromUser = function(req, res) {
                 }
             }
         }
-        console.log('reached');
         res.end();
     });
 };
 
+exports.findProfile = function(req, res) {
+    var userId = req.params.id;
+
+    GameList.find({ userId : userId }, function(err, gameList) {
+        res.render('user-profile.jade', { user : req.user, gameList : gameList[0] });
+    });
+};
+
+
+
+
+// POST
+// addGame()
+exports.addGame = function(req, res) {
+
+    //console.log('uploading image file: ' + JSON.stringify(req.file, null, 4));
+    //console.log('uploading image file: ' + JSON.stringify(req.file, null, 4));
+
+    var post = req.body;
+    console.log(JSON.parse(post.platform));
+
+    var newGame = new Game();
+    newGame.title = post.title;
+    newGame.series = post.series;
+    newGame.platform = JSON.parse(post.platform);
+    newGame.released = post.released;
+    newGame.developer = post.developer;
+    newGame.publisher = post.publisher;
+    //newGame.img.data = fs.readFileSync(req.file.path);
+    //newGame.img.contentType = req.file.mimetype;
+
+    newGame.save(function(err) {
+        if (err)
+            console.error('ERROR: could not add game');
+    });
+
+    res.redirect('back');
+};
 
 exports.addToGameList = function(req, res) {
 
@@ -141,8 +171,8 @@ exports.addToGameList = function(req, res) {
 
             // add game
             newGameList.gameList.push({
-               gameId   : post.gameId,
-               gameName : post.gameName
+                gameId   : post.gameId,
+                gameName : post.gameName
             });
 
             // save
@@ -157,54 +187,37 @@ exports.addToGameList = function(req, res) {
 
             // Precaution: catch if game already exists in the user's gamelist. This means the UI isn't disabling the 'add to list' button properly.
             GameList.findOne({
-                $and: [
-                    { userId : req.user._id },
-                    { 'gameList.gameId': post.gameId }
-                ]
-            },
-            {
-                'gameList.gameName' : 1
-            },
-            function(err, gameExists) {
-                if (gameExists) {
-                    console.error("THIS GAME IS ALREADY IN THE LIST!!! YA DONE GOOFED: " + gameExists);
-                }
-                else {
-                    // Add game to user's gamelist
-                    selectedGameList.gameList.push({
-                        gameId   : post.gameId,
-                        gameName : post.gameName
-                    });
+                    $and: [
+                        { userId : req.user._id },
+                        { 'gameList.gameId': post.gameId }
+                    ]
+                },
+                {
+                    'gameList.gameName' : 1
+                },
+                function(err, gameExists) {
+                    if (gameExists) {
+                        console.error("THIS GAME IS ALREADY IN THE LIST!!! YA DONE GOOFED: " + gameExists);
+                    }
+                    else {
+                        // Add game to user's gamelist
+                        selectedGameList.gameList.push({
+                            gameId   : post.gameId,
+                            gameName : post.gameName
+                        });
 
-                    // save
-                    selectedGameList.save(function(err) {
-                        if (err) {
-                            console.error("could not save to user's gamelist!!! " + err);
-                        }
-                    });
-                } // end else
-            });
+                        // save
+                        selectedGameList.save(function(err) {
+                            if (err) {
+                                console.error("could not save to user's gamelist!!! " + err);
+                            }
+                        });
+                    } // end else
+                });
         }
     });
     res.end();
 };
-
-exports.findAllUsers = function(req, res) {
-    GameList.find({}, function(err, gameList) {
-       res.send(gameList);
-    });
-};
-
-exports.findProfile = function(req, res) {
-    var userId = req.params.id;
-
-    GameList.find({ userId : userId }, function(err, gameList) {
-        res.render('user-profile.jade', { user : req.user, gameList : gameList[0] });
-    });
-};
-
-
-
 
 exports.updateGameRating = function(req, res) {
     var post = req.body;
