@@ -12,11 +12,12 @@ exports.addGame = function(req, res) {
     //console.log('uploading image file: ' + JSON.stringify(req.file, null, 4));
 
     var post = req.body;
+    console.log(JSON.parse(post.platform));
 
     var newGame = new Game();
     newGame.title = post.title;
     newGame.series = post.series;
-    newGame.platform = post.platform;
+    newGame.platform = JSON.parse(post.platform);
     newGame.released = post.released;
     newGame.developer = post.developer;
     newGame.publisher = post.publisher;
@@ -263,6 +264,69 @@ exports.updateHoursPlayed = function(req, res) {
 
         game.save(function (err) {
             if (err) console.log("ERROR CHANGING THE HOURS PLAYED");
+            res.end();
+        });
+    });
+};
+
+exports.toggleCompleted = function(req, res) {
+    var post = req.body;
+    var completed = JSON.parse(post.completed);
+
+    GameList.findOne({
+        $and: [
+            { userId : req.user._id },
+            { 'gameList.gameId': post.gameId }
+        ]
+    },
+    function(err, game) {
+        console.log(game);
+
+        //send only the pertaining game in gameList
+        for (var i = 0; i < game.gameList.length; i++) {
+            //console.log("iterating: " + game.gameList[i].gameId + " == " + mongoose.Types.ObjectId(gameId));
+            if(game.gameList[i].gameId == post.gameId) {
+                console.log("found it~");
+
+                // change complete
+                game.gameList[i].completed = completed;
+            }
+        }
+
+        game.save(function (err) {
+            if (err) console.log("ERROR CHANGING COMPLETION");
+            res.end();
+        });
+    });
+};
+
+exports.toggleNowPlaying = function(req, res) {
+    var post = req.body;
+    var playingNow = JSON.parse(post.playingNow);
+    console.log(playingNow);
+
+    GameList.findOne({
+        $and: [
+            { userId : req.user._id },
+            { 'gameList.gameId': post.gameId }
+        ]
+    },
+    function(err, game) {
+        console.log(game);
+
+        //send only the pertaining game in gameList
+        for (var i = 0; i < game.gameList.length; i++) {
+            //console.log("iterating: " + game.gameList[i].gameId + " == " + mongoose.Types.ObjectId(gameId));
+            if(game.gameList[i].gameId == post.gameId) {
+                console.log("found it~");
+
+                // change complete
+                game.gameList[i].playingNow = playingNow;
+            }
+        }
+
+        game.save(function (err) {
+            if (err) console.log("ERROR CHANGING COMPLETION");
             res.end();
         });
     });

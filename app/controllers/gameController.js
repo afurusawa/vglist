@@ -10,15 +10,20 @@ angular.module('app')
     $scope.rating = 0;
     $scope.gameState = {
         added : false,
-        text : "add to list"
+        addText : "add to list",
+        completed : false,
+        completeText : "complete",
+        playingNow : false,
+        playingNowText : "currently playing"
     };
 
     var initRan = false;
 
     $scope.$watchGroup(['init', 'rating', 'hoursPlayed'], function(newVal, oldVal) {
-        //console.log(JSON.stringify(newVal[0]) + " " + JSON.stringify(oldVal[0]));
-        // if rating is something other than 0
-        if(newVal[1] > 0 && ()) {
+        console.log(JSON.stringify(newVal[1]) + " " + JSON.stringify(oldVal[1]));
+
+        // Watch for rating change
+        if((oldVal[1] > 0) && (newVal[1] > 0) && (newVal[1] != oldVal[1])) {
             console.log("updating rating..." + $scope.rating);
             var postData = {
                 gameId : $scope.init.gameId,
@@ -29,7 +34,8 @@ angular.module('app')
             });
         }
 
-        if(newVal[3] > 0) {
+        // Watch for hoursPlayed change (other than 0 or on-load)
+        if((oldVal[2] > 0) && (newVal[2] > 0) && (newVal[2] != oldVal[2])) {
             console.log("updating hours played..." + $scope.hoursPlayed);
             var postData = {
                 gameId : $scope.init.gameId,
@@ -53,7 +59,7 @@ angular.module('app')
                 // if something was returned, that means its already been added
                 if(game) {
                     $scope.gameState.added = true;
-                    $scope.gameState.text = "added";
+                    $scope.gameState.addText = "added";
                 }
 
                 // if rating exists, show it
@@ -62,6 +68,17 @@ angular.module('app')
                     $scope.rateButton.visible = false;
                 }
 
+                // update hoursPlayed
+                $scope.hoursPlayed = game.hoursPlayed;
+
+                // completed
+                if (game.completed) {
+                    $scope.gameState.completed = true;
+                    $scope.gameState.completeText = "completed";
+                }
+
+                // playing now
+                $scope.gameState.playingNow = game.playingNow;
             });
         }
 
@@ -72,6 +89,7 @@ angular.module('app')
     $scope.rateGame = function() {
         $scope.rateButton.visible = !$scope.rateButton.visible;
     };
+
 
     // ng-click function to add a game to user's game list
     $scope.addToList = function(id, name) {
@@ -88,8 +106,44 @@ angular.module('app')
             // if added successfully, disable 'add to list button'
 
             $scope.gameState.added = true;
-            $scope.gameState.text = "added";
+            $scope.gameState.addText = "added";
         });
     };
+
+    $scope.toggleCompleted = function(id, complete) {
+
+        // if complete=false, we need to set it to true in the DB and UI
+        console.log("clicked button w/ id: " + id.toString());
+
+        var postData = {
+            gameId      : id,
+            completed    : !complete
+        };
+        $http.post('/toggleCompleted', postData).then(function(res) {
+            console.log("res: " + JSON.stringify(res, null, 4));
+            // if added successfully, disable 'add to list button'
+
+            if (!complete) {
+                $scope.gameState.completed = true;
+                $scope.gameState.completeText = "completed";
+            }
+            else {
+                $scope.gameState.completed = false;
+                $scope.gameState.completeText = "complete";
+            }
+
+        });
+    };
+
+    $scope.toggleNowPlaying = function(id, playingNow) {
+        var postData = {
+            gameId      : id,
+            playingNow  : !playingNow
+        };
+        $http.post('/toggleNowPlaying', postData).then(function(res) {
+            $scope.gameState.playingNow = !playingNow;
+        });
+    };
+
 
 }]);

@@ -115,3 +115,6 @@ app.post('/addToGameList', REST.addToGameList);
 
 app.post('/updateGameRating', REST.updateGameRating);
 app.post('/updateHoursPlayed', REST.updateHoursPlayed);
+
+app.post('/toggleCompleted', REST.toggleCompleted);
+app.post('/toggleNowPlaying', REST.toggleNowPlaying);

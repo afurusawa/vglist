@@ -18,7 +18,7 @@ block content
 
         p platforms are distinguished via generations (https://en.wikipedia.org/wiki/Video_game_console)
 
-        input(type='hidden', name="game.platform" value='{{platformData}}')
+        input(type='hidden', name="platform" value='{{platformData}}')
         .platform
             .platform__console
                 .console__unit(ng-click='toggle()', ng-class='{ selected : unit.state }' ng-repeat="unit in consoles")
