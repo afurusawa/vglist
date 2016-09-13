@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a0bcf8af-1c1f-4d74-a46a-a3c1313b50e9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/dashboardController.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/controllers/profileController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gruntfile.js" afterPath="$PROJECT_DIR$/Gruntfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/gameController.js" afterPath="$PROJECT_DIR$/app/controllers/gameController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/RESTService.js" afterPath="$PROJECT_DIR$/app/services/RESTService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/game.jade" afterPath="$PROJECT_DIR$/app/templates/game.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/profile.jade" afterPath="$PROJECT_DIR$/app/templates/profile.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.min.js" afterPath="$PROJECT_DIR$/www/js/app.min.js" />
     </list>
     <ignored path="vglist.iws" />
@@ -64,8 +57,8 @@
           <file leaf-file-name="game.jade" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/templates/game.jade">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.26894864">
-                  <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.09779951">
+                  <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -108,8 +101,8 @@
           <file leaf-file-name="gameController.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/controllers/gameController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.36674815">
-                  <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+                <state vertical-scroll-proportion="0.4767726">
+                  <caret line="91" column="21" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
                   <folding />
                 </state>
               </provider>
@@ -213,8 +206,8 @@
         <option value="$PROJECT_DIR$/app/controllers/listController.js" />
         <option value="$PROJECT_DIR$/app/controllers/dashboardController.js" />
         <option value="$PROJECT_DIR$/app/templates/profile.jade" />
-        <option value="$PROJECT_DIR$/app/controllers/gameController.js" />
         <option value="$PROJECT_DIR$/app/templates/game.jade" />
+        <option value="$PROJECT_DIR$/app/controllers/gameController.js" />
       </list>
     </option>
   </component>
@@ -542,7 +535,13 @@
       <option name="project" value="LOCAL" />
       <updated>1473732532010</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="profile: populated with data&#10;game: fixed how hoursplayed and rating update">
+      <created>1473806620052</created>
+      <option name="number" value="00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1473806620052</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -592,7 +591,8 @@
     <MESSAGE value="fixed rating func. where updated wrong game rating" />
     <MESSAGE value="backup" />
     <MESSAGE value="game: playing now and completed func." />
-    <option name="LAST_COMMIT_MESSAGE" value="game: playing now and completed func." />
+    <MESSAGE value="profile: populated with data&#10;game: fixed how hoursplayed and rating update" />
+    <option name="LAST_COMMIT_MESSAGE" value="profile: populated with data&#10;game: fixed how hoursplayed and rating update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -752,8 +752,8 @@
         <state vertical-scroll-proportion="0.5898876">
           <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
           <folding>
-            <marker date="1473806308000" expanded="true" signature="1707:1717" placeholder="{...}" />
-            <marker date="1473806308000" expanded="true" signature="6704:6981" placeholder="{...}" />
+            <marker date="1473809079000" expanded="true" signature="1707:1717" placeholder="{...}" />
+            <marker date="1473809079000" expanded="true" signature="6969:7246" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1010,18 +1010,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/gameController.js">
+    <entry file="file://$PROJECT_DIR$/app/templates/game.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36674815">
-          <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.09779951">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/game.jade">
+    <entry file="file://$PROJECT_DIR$/app/controllers/gameController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26894864">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.4767726">
+          <caret line="91" column="21" selection-start-line="91" selection-start-column="21" selection-end-line="91" selection-end-column="21" />
           <folding />
         </state>
       </provider>

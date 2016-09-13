@@ -13,13 +13,15 @@ angular.module('app')
         completed : false,
         completeText : "complete",
         playingNow : false,
-        playingNowText : "currently playing"
+        playingNowText : "currently playing",
+        initRan : false
     };
 
-    var initRan = false;
+    //var initRan = false;
 
     $scope.$watchGroup(['init', 'rating', 'hoursPlayed'], function(newVal, oldVal) {
         console.log(JSON.stringify(newVal[1]) + " " + JSON.stringify(oldVal[1]) + ", " + JSON.stringify(newVal[2]) + " " + JSON.stringify(oldVal[2]));
+console.log(JSON.stringify(newVal[0]) + " " + JSON.stringify(oldVal[0]));
 
         // if 'rating' changed by the user, update it in db
         if((newVal[1] != oldVal[1]) && (typeof oldVal[1] != "undefined")) {
@@ -48,7 +50,7 @@ angular.module('app')
 
         // get info about the game and check if it has a rating/is added the user's list
         // apparently I can't run an http.get initially and instead have to do it here because there's an issue with the ng-init values not being set when http.get is run.
-        if(newVal[0] && !initRan) {
+        if(newVal[0].userId && !$scope.gameState.initRan) {
             $http.get('/' + $scope.init.userId + '/' + $scope.init.gameId).then(function(res) {
                 console.log('getting user info about the game');
 
@@ -89,7 +91,9 @@ angular.module('app')
                 // playing now
                 $scope.gameState.playingNow = game.playingNow;
 
-                initRan = true; //set flag so it doesn't run again.
+                $scope.gameState.initRan = true;  //set flag so it doesn't run again.
+            }).catch(function(response) {
+                console.error('error', response.status, response.data);
             });
         }
     });
@@ -117,6 +121,12 @@ angular.module('app')
 
             $scope.gameState.added = true;
             $scope.gameState.addText = "added";
+            //$scope.init.gameId = id.toString();
+
+            $scope.rating = 0;
+            $scope.hoursPlayed = 0;
+
+            $scope.gameState.initRan = true;
         });
     };
 
