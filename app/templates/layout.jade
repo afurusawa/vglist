@@ -61,7 +61,7 @@ html
             .search-bar__results(ng-hide='search.length < 3', ng-cloak)
                 .results(ng-show='search.length >= 3', ng-repeat = "game in results")
                     a(href='/game/{{game._id}}') {{game.title}} [id: {{game._id}}]
-                        button(ng-click="addToList(game._id, game.title)", ng-disabled='isDisabled') add to list
+                       // button(ng-click="addToList(game._id, game.title)", ng-disabled='isDisabled') add to list
 
 
         section.l-middle

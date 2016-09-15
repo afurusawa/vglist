@@ -31,7 +31,8 @@ block content
             span hours played
 
         .add-to-list-btn(ng-if='"#{user._id}".localeCompare("0")')
-            button(ng-click='addToList("#{game._id}", "#{game.title}")', ng-disabled="gameState.added") {{gameState.addText}}
+            button(ng-click='addToList("#{game._id}", "#{game.title}")', ng-hide="gameState.added") add to list
+            button(ng-click='removeFromList("#{game._id}")', ng-show='gameState.added') remove from list
 
         .complete-btn(ng-if='"#{user._id}".localeCompare("0")')
             button(ng-click='toggleCompleted("#{game._id}", gameState.completed)', ng-class="{ selected : gameState.completed }") {{gameState.completeText}}

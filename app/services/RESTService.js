@@ -69,7 +69,7 @@ exports.findGameFromUser = function(req, res) {
     //var userId = req.params.uid;
     var gameId = req.params.gid;
 
-    console.log(gameId);
+    //console.log(gameId);
 
     GameList.findOne({
         $and: [
@@ -87,11 +87,11 @@ exports.findGameFromUser = function(req, res) {
         else {
             //send only the pertaining game in gameList
             for (var i = 0; i < game.gameList.length; i++) {
-                console.log("iterating: " + game.gameList[i].gameId + " == " + mongoose.Types.ObjectId(gameId));
+                //console.log("iterating: " + game.gameList[i].gameId + " == " + mongoose.Types.ObjectId(gameId));
                 if(game.gameList[i].gameId == gameId) {
-                    console.log("found it~");
+                    //console.log("found it~");
 
-                    console.log("sending " + game.gameList[i]);
+                    //console.log("sending " + game.gameList[i]);
                     res.send(game.gameList[i]);
                 }
             }
@@ -139,6 +139,41 @@ exports.addGame = function(req, res) {
     res.redirect('back');
 };
 
+
+exports.removeFromGameList = function(req, res) {
+    var post = req.body;
+
+    if (!req.user) {
+        console.error("Cannot remove game. You are not logged in!");
+        res.end();
+    }
+
+    GameList.findOne({
+        $and: [
+            { userId : req.user._id },
+            { 'gameList.gameId': post.gameId }
+        ]
+    },
+    function (err, selectedGameList) {
+
+        // find and remove
+        for(var i = 0; i < selectedGameList.gameList.length; i++) {
+            console.log(post.gameId + " == " + selectedGameList.gameList[i].gameId);
+            if(post.gameId == selectedGameList.gameList[i].gameId) {
+                //console.log('found');
+                selectedGameList.gameList.splice(i, 1);
+            }
+        }
+
+        // save
+        selectedGameList.save(function(err) {
+            if (err) {
+                console.error("could not remove from user's gamelist!!! " + err);
+            }
+        });
+    });
+    res.end();
+};
 exports.addToGameList = function(req, res) {
 
     var post = req.body;

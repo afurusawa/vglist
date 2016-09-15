@@ -116,7 +116,7 @@ console.log(JSON.stringify(newVal[0]) + " " + JSON.stringify(oldVal[0]));
 
         // remember when doing a post, the data needs to be in JSON format i.e. {id : id}
         $http.post('/addToGameList', postData).then(function(res) {
-            console.log("res: " + JSON.stringify(res, null, 4));
+            //console.log("res: " + JSON.stringify(res, null, 4));
             // if added successfully, disable 'add to list button'
 
             $scope.gameState.added = true;
@@ -129,6 +129,25 @@ console.log(JSON.stringify(newVal[0]) + " " + JSON.stringify(oldVal[0]));
             $scope.gameState.initRan = true;
         });
     };
+
+    $scope.removeFromList = function(id) {
+        var postData = {
+            gameId : id
+        };
+
+        $http.post('/removeFromGameList', postData).then(function(res) {
+            console.log("removing game from list");
+            $scope.gameState.added = false;
+            $scope.rating = 0;
+            $scope.hoursPlayed = 0;
+
+            $scope.gameState.initRan = false;
+        }).catch(function(err) {
+            console.log("what the fuck happened");
+        });
+    };
+
+
 
     $scope.toggleCompleted = function(id, complete) {
 

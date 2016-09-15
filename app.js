@@ -115,6 +115,7 @@ app.get('/:uid/:gid', REST.findGameFromUser);
 app.post('/addGame', REST.addGame);
 
 app.post('/addToGameList', REST.addToGameList);
+app.post('/removeFromGameList', REST.removeFromGameList);
 
 app.post('/updateGameRating', REST.updateGameRating);
 app.post('/updateHoursPlayed', REST.updateHoursPlayed);
