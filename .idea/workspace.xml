@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a0bcf8af-1c1f-4d74-a46a-a3c1313b50e9" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/gameController.js" afterPath="$PROJECT_DIR$/app/controllers/gameController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/RESTService.js" afterPath="$PROJECT_DIR$/app/services/RESTService.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.min.js" afterPath="$PROJECT_DIR$/www/js/app.min.js" />
     </list>
     <ignored path="vglist.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,16 +48,16 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="RESTService.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="RESTService.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/services/RESTService.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.67083335">
-                  <caret line="368" column="67" selection-start-line="368" selection-start-column="67" selection-end-line="368" selection-end-column="67" />
+                <state vertical-scroll-proportion="-25.37037">
+                  <caret line="186" column="67" selection-start-line="186" selection-start-column="67" selection-end-line="186" selection-end-column="67" />
                   <folding>
                     <element signature="e#242#319#0" expanded="false" />
                     <element signature="e#363#450#0" expanded="false" />
                     <element signature="e#3012#3207#0" expanded="false" />
-                    <element signature="e#6666#7521#0" expanded="false" />
+                    <element signature="e#6415#7270#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -71,11 +73,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="game.jade" pinned="false" current-in-tab="false">
+          <file leaf-file-name="game.jade" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/templates/game.jade">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="44" column="52" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
+                <state vertical-scroll-proportion="0.58679706">
+                  <caret line="46" column="20" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
@@ -85,14 +87,14 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="gameController.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="gameController.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/controllers/gameController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="27" column="62" selection-start-line="27" selection-start-column="62" selection-end-line="27" selection-end-column="62" />
+                <state vertical-scroll-proportion="0.48899755">
+                  <caret line="75" column="21" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="21" />
                   <folding>
-                    <element signature="e#5659#6423#0" expanded="false" />
-                    <element signature="e#6481#6730#0" expanded="false" />
+                    <element signature="e#5770#6534#0" expanded="false" />
+                    <element signature="e#6592#6841#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -128,10 +130,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="gamelist.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="gamelist.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/models/gamelist.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.20782396">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
                   <folding />
                 </state>
@@ -205,9 +207,9 @@
         <option value="$PROJECT_DIR$/app/models/gamelist.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/app/models/game.js" />
-        <option value="$PROJECT_DIR$/app/controllers/gameController.js" />
         <option value="$PROJECT_DIR$/app/templates/game.jade" />
         <option value="$PROJECT_DIR$/app/services/RESTService.js" />
+        <option value="$PROJECT_DIR$/app/controllers/gameController.js" />
       </list>
     </option>
   </component>
@@ -559,7 +561,13 @@
       <option name="project" value="LOCAL" />
       <updated>1473927682798</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="game: avg rating working">
+      <created>1473969021748</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1473969021748</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -613,7 +621,8 @@
     <MESSAGE value="game: fixed issue updating rating with unadded game" />
     <MESSAGE value="game: added the remove functionality" />
     <MESSAGE value="game: working on avg rating" />
-    <option name="LAST_COMMIT_MESSAGE" value="game: working on avg rating" />
+    <MESSAGE value="game: avg rating working" />
+    <option name="LAST_COMMIT_MESSAGE" value="game: avg rating working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -773,8 +782,8 @@
         <state vertical-scroll-proportion="0.5898876">
           <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
           <folding>
-            <marker date="1473923028000" expanded="true" signature="1707:1717" placeholder="{...}" />
-            <marker date="1473923028000" expanded="true" signature="8128:8137" placeholder="{...}" />
+            <marker date="1473970607000" expanded="true" signature="1707:1717" placeholder="{...}" />
+            <marker date="1473970607000" expanded="true" signature="8280:8289" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1006,28 +1015,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/gameController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="62" selection-start-line="27" selection-start-column="62" selection-end-line="27" selection-end-column="62" />
-          <folding>
-            <element signature="e#5659#6423#0" expanded="false" />
-            <element signature="e#6481#6730#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/game.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="52" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/gamelist.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20782396">
+        <state vertical-scroll-proportion="0.0">
           <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
           <folding />
         </state>
@@ -1035,13 +1025,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/services/RESTService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67083335">
-          <caret line="368" column="67" selection-start-line="368" selection-start-column="67" selection-end-line="368" selection-end-column="67" />
+        <state vertical-scroll-proportion="-25.37037">
+          <caret line="186" column="67" selection-start-line="186" selection-start-column="67" selection-end-line="186" selection-end-column="67" />
           <folding>
             <element signature="e#242#319#0" expanded="false" />
             <element signature="e#363#450#0" expanded="false" />
             <element signature="e#3012#3207#0" expanded="false" />
-            <element signature="e#6666#7521#0" expanded="false" />
+            <element signature="e#6415#7270#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/game.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58679706">
+          <caret line="46" column="20" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/gameController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48899755">
+          <caret line="75" column="21" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="21" />
+          <folding>
+            <element signature="e#5770#6534#0" expanded="false" />
+            <element signature="e#6592#6841#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -168,6 +168,33 @@ exports.removeFromGameList = function(req, res) {
     },
     function (err, selectedGameList) {
 
+        var oldRating = selectedGameList.gameList[0].rating;
+
+        // Update overall game rating
+        Game.findOne({ _id : post.gameId }, function(err, game) {
+
+            console.log("hey I made it" + game);
+            var numerator = (game.metadata.userRating * game.metadata.userRatingCount) - oldRating;
+            var denominator = game.metadata.userRatingCount - 1;
+
+            if (!denominator) {
+                game.metadata.userRating = 0;
+                game.metadata.userRatingCount = 0;
+            }
+            else {
+                console.log(game.metadata.userRating + "*" + game.metadata.userRatingCount + "=>" + game.metadata.userRating * game.metadata.userRatingCount);
+                console.log(numerator + "/" + denominator + " => " + numerator / denominator);
+                game.metadata.userRating = numerator / denominator;
+                game.metadata.userRatingCount--;
+            }
+
+            game.save(function (err) {
+                if (err) console.log("ERROR CALCULATING RATING");
+            });
+        });
+
+
+
         // find and remove
         for(var i = 0; i < selectedGameList.gameList.length; i++) {
             console.log(post.gameId + " == " + selectedGameList.gameList[i].gameId);
@@ -184,39 +211,6 @@ exports.removeFromGameList = function(req, res) {
             }
         });
     });
-
-    //TODO: don't forget I need to work on this (recalc avg rating on removal)
-    // Update overall game rating
-    Game.findOne({ _id : post.gameId }, function(err, game) {
-
-        console.log("hey I made it" + game);
-        // Check if anyone has rated yet (initial case)
-        if (!game.metadata.userRatingCount) {
-            game.metadata.userRating = post.rating;
-            game.metadata.userRatingCount++;
-
-            game.save(function (err) {
-                if (err) console.log("ERROR CALCULATING RATING FIRST");
-            });
-        }
-
-        // Normal Case: recalculate the average, and increment count
-        else {
-            var numerator = (game.metadata.userRating * game.metadata.userRatingCount) + parseInt(post.rating);
-            var denominator = game.metadata.userRatingCount + 1;
-            console.log(game.metadata.userRating + "*" + game.metadata.userRatingCount + "=>" + game.metadata.userRating * game.metadata.userRatingCount);
-            console.log(numerator + "/" + denominator + " => " + numerator/denominator);
-            game.metadata.userRating = numerator / denominator;
-            game.metadata.userRatingCount++;
-
-            game.save(function (err) {
-                if (err) console.log("ERROR CALCULATING RATING");
-            });
-        }
-
-    });
-
-
 
     res.end();
 };
@@ -340,7 +334,6 @@ exports.updateGameRating = function(req, res) {
             else if (!newRating) {
                 console.log("null case");
 
-                // add new rating
                 var numerator = (game.metadata.userRating * game.metadata.userRatingCount) - oldRating;
                 var denominator = game.metadata.userRatingCount - 1;
 

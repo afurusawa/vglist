@@ -23,6 +23,11 @@ angular.module('app')
         console.log(JSON.stringify(newVal[1]) + " " + JSON.stringify(oldVal[1]) + ", " + JSON.stringify(newVal[2]) + " " + JSON.stringify(oldVal[2]));
 console.log(JSON.stringify(newVal[0]) + " " + JSON.stringify(oldVal[0]));
 
+        // If game was removed, no need to watch for changes
+        if(!$scope.gameState.added && $scope.gameState.initRan) {
+            return;
+        }
+
         // if 'rating' changed by the user, update it in db
         if((newVal[1] != oldVal[1]) && (typeof oldVal[1] != "undefined")) {
             console.log("updating rating..." + $scope.rating);
@@ -148,8 +153,6 @@ console.log(JSON.stringify(newVal[0]) + " " + JSON.stringify(oldVal[0]));
             $scope.gameState.added = false;
             $scope.rating = 0;
             $scope.hoursPlayed = 0;
-
-            $scope.gameState.initRan = false;
         }).catch(function(err) {
             console.log("what the fuck happened");
         });
