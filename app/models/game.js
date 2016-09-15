@@ -9,11 +9,14 @@ var gameSchema = mongoose.Schema({
     developer   : String,
     publisher   : String,
     //img         : { data: Buffer, contentType: String },
+    //player     : { type: mongoose.Schema.Types.ObjectId, ref: 'GameList' },
 
 
     metadata : {
-        userRating      : [Number],
-        criticRating    : [Number]
+        userRating          : { type: Number, min: 0, max: 100, default: 0 },
+        userRatingCount     : { type: Number, min: 0, default: 0 },
+        criticRating        : { type: Number, min: 0, max: 100, default: 0 },
+        criticRatingCount   : { type: Number, min: 0, default: 0 }
     }
 });
 
@@ -23,7 +26,29 @@ module.exports = mongoose.model('Game', gameSchema);
 
  Calculating Rating:
 
- Each time someone either rates or unrates a game on their end, the value is added or removed from the array. When a user views the page, the rating average is calculated using this array.
+ Each time someone either rates or unrates a game on their end, the value is recalculated with the following formula, which should calculate the new average:
+
+ (userRating * userRatingCount) + newRating
+ --- divided by ---
+ userRatingCount + 1
+
+
+ which becomes:
+
+ total = userRating * userRatingCount
+ total = total + ratingToAdd
+ count = UserRatingCount + 1
+
+ new avg = total / count
+
+
+ So to reverse it:
+
+ (userRating * userRatingCount) - ratingToRemove
+ --- divided by ---
+ userRating - 1
+
+
 
 
  Release Year:

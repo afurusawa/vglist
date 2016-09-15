@@ -7,7 +7,7 @@ block content
     .game(ng-controller="listController")
         .list(ng-repeat="game in list")
             a(href='/game/{{game._id}}') {{game.title}} [id: {{game._id}}]
-            button(ng-click="addToList(game._id, game.title)", ng-disabled='isDisabled') {{button}}
+            //button(ng-click="addToList(game._id, game.title)", ng-disabled='isDisabled') {{button}}
 
         br
         .userlist(ng-repeat="user in userlist")

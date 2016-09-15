@@ -35,6 +35,10 @@ exports.findByGameId = function(req, res) {
 
     Game.find({ _id : id }, function(err, game) {
 
+        if(err) {
+            res.end();
+        }
+
         // Format img if exists
         // var img = "";
         // if(!game[0].img.data) {
@@ -58,7 +62,15 @@ exports.findGameListByUser = function(req, res) {
 
 
 exports.findMyGameList = function(req, res) {
+
+    if (req.user == 'undefined') {
+        res.end();
+    }
+
     GameList.find({ userId : req.user._id }, function(err, games) {
+        if (err) {
+            res.end();
+        }
         res.send(games);
     });
 };
@@ -172,6 +184,40 @@ exports.removeFromGameList = function(req, res) {
             }
         });
     });
+
+    //TODO: don't forget I need to work on this (recalc avg rating on removal)
+    // Update overall game rating
+    Game.findOne({ _id : post.gameId }, function(err, game) {
+
+        console.log("hey I made it" + game);
+        // Check if anyone has rated yet (initial case)
+        if (!game.metadata.userRatingCount) {
+            game.metadata.userRating = post.rating;
+            game.metadata.userRatingCount++;
+
+            game.save(function (err) {
+                if (err) console.log("ERROR CALCULATING RATING FIRST");
+            });
+        }
+
+        // Normal Case: recalculate the average, and increment count
+        else {
+            var numerator = (game.metadata.userRating * game.metadata.userRatingCount) + parseInt(post.rating);
+            var denominator = game.metadata.userRatingCount + 1;
+            console.log(game.metadata.userRating + "*" + game.metadata.userRatingCount + "=>" + game.metadata.userRating * game.metadata.userRatingCount);
+            console.log(numerator + "/" + denominator + " => " + numerator/denominator);
+            game.metadata.userRating = numerator / denominator;
+            game.metadata.userRatingCount++;
+
+            game.save(function (err) {
+                if (err) console.log("ERROR CALCULATING RATING");
+            });
+        }
+
+    });
+
+
+
     res.end();
 };
 exports.addToGameList = function(req, res) {
@@ -256,7 +302,10 @@ exports.addToGameList = function(req, res) {
 
 exports.updateGameRating = function(req, res) {
     var post = req.body;
+    var previousRating = 0;
 
+    console.log("updating rating - " + JSON.stringify(post, null, 4));
+    // Update your rating
     GameList.findOne({
         $and: [
             { userId : req.user._id },
@@ -267,24 +316,56 @@ exports.updateGameRating = function(req, res) {
         console.log(game);
         console.log(game.gameList[0].rating + "==>" + post.rating);
 
+        //if rating changed from n>0 to m>0, update. if rating was 0,
+
         //send only the pertaining game in gameList
         for (var i = 0; i < game.gameList.length; i++) {
             //console.log("iterating: " + game.gameList[i].gameId + " == " + mongoose.Types.ObjectId(gameId));
             if(game.gameList[i].gameId == post.gameId) {
                 console.log("found it~");
 
+                previousRating = game.gameList[i].rating;
                 // change rating
                 game.gameList[i].rating = post.rating;
             }
         }
 
-
-
         game.save(function (err) {
             if (err) console.log("ERROR CHANGING THE RATING");
-            res.end();
         });
     });
+
+    // Update overall game rating
+    Game.findOne({ _id : post.gameId }, function(err, game) {
+
+        console.log("hey I made it" + game);
+        // Check if anyone has rated yet (initial case)
+        if (!game.metadata.userRatingCount) {
+            game.metadata.userRating = post.rating;
+            game.metadata.userRatingCount++;
+
+            game.save(function (err) {
+                if (err) console.log("ERROR CALCULATING RATING FIRST");
+            });
+        }
+
+        // Normal Case: recalculate the average, and increment count
+        else {
+            var numerator = (game.metadata.userRating * game.metadata.userRatingCount) + parseInt(post.rating);
+            var denominator = game.metadata.userRatingCount + 1;
+            console.log(game.metadata.userRating + "*" + game.metadata.userRatingCount + "=>" + game.metadata.userRating * game.metadata.userRatingCount);
+            console.log(numerator + "/" + denominator + " => " + numerator/denominator);
+            game.metadata.userRating = numerator / denominator;
+            game.metadata.userRatingCount++;
+
+            game.save(function (err) {
+                if (err) console.log("ERROR CALCULATING RATING");
+            });
+        }
+
+    });
+
+    res.end();
 };
 
 exports.updateHoursPlayed = function(req, res) {

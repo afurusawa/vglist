@@ -75,7 +75,7 @@ var server = app.listen(8080, function () {
 // GET
 app.get('/allGames', REST.findAll);
 app.get('/myGames', REST.findMyGameList);
-app.get('/game/:id', REST.findByGameId);
+app.get('/game/:id', REST.findByGameId); // route
 
 app.get('/games/:uid', REST.findGameListByUser);
 

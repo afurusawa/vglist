@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var gameListItemSchema = mongoose.Schema({
-    gameId         : mongoose.Schema.Types.ObjectId,
+    gameId         : { type: mongoose.Schema.Types.ObjectId, ref: 'Game' },
     gameName       : String,
     rating         : { type: Number, min: 0, max: 100, default: 0 },
     completed      : { type: Number, default: 0 },

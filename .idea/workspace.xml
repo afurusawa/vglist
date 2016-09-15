@@ -5,11 +5,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/gameController.js" afterPath="$PROJECT_DIR$/app/controllers/gameController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/headerController.js" afterPath="$PROJECT_DIR$/app/controllers/headerController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/searchController.js" afterPath="$PROJECT_DIR$/app/controllers/searchController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/game.js" afterPath="$PROJECT_DIR$/app/models/game.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/gamelist.js" afterPath="$PROJECT_DIR$/app/models/gamelist.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/services/RESTService.js" afterPath="$PROJECT_DIR$/app/services/RESTService.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/browse-games.jade" afterPath="$PROJECT_DIR$/app/templates/browse-games.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/game.jade" afterPath="$PROJECT_DIR$/app/templates/game.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/layout.jade" afterPath="$PROJECT_DIR$/app/templates/layout.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/templates/home.jade" afterPath="$PROJECT_DIR$/app/templates/home.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.min.js" afterPath="$PROJECT_DIR$/www/js/app.min.js" />
     </list>
     <ignored path="vglist.iws" />
@@ -37,7 +38,17 @@
             <entry file="file://$PROJECT_DIR$/app.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="101" column="39" selection-start-line="101" selection-start-column="39" selection-end-line="103" selection-end-column="41" />
+                  <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/routes.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="11" />
                   <folding />
                 </state>
               </provider>
@@ -46,34 +57,14 @@
           <file leaf-file-name="RESTService.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/services/RESTService.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6458333">
-                  <caret line="174" column="14" selection-start-line="174" selection-start-column="14" selection-end-line="174" selection-end-column="14" />
+                <state vertical-scroll-proportion="0.1">
+                  <caret line="309" column="15" selection-start-line="309" selection-start-column="15" selection-end-line="309" selection-end-column="15" />
                   <folding>
                     <element signature="e#242#319#0" expanded="false" />
                     <element signature="e#363#450#0" expanded="false" />
-                    <element signature="e#2846#3041#0" expanded="false" />
-                    <element signature="e#5182#6037#0" expanded="false" />
+                    <element signature="e#3012#3207#0" expanded="false" />
+                    <element signature="e#6666#7521#0" expanded="false" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="gamelist.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/models/gamelist.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="profile.jade" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/templates/profile.jade">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -88,21 +79,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/models/game.js">
+          <file leaf-file-name="game.jade" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/templates/game.jade">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="layout.jade" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/templates/layout.jade">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="61" column="83" selection-start-line="61" selection-start-column="83" selection-end-line="61" selection-end-column="83" />
+                  <caret line="44" column="52" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
                   <folding />
                 </state>
               </provider>
@@ -112,22 +93,15 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="gameController.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="gameController.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/controllers/gameController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6210269">
-                  <caret line="125" column="30" selection-start-line="125" selection-start-column="30" selection-end-line="125" selection-end-column="30" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="game.jade" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/templates/game.jade">
-              <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
-                  <folding />
+                  <caret line="27" column="62" selection-start-line="27" selection-start-column="62" selection-end-line="27" selection-end-column="62" />
+                  <folding>
+                    <element signature="e#5659#6423#0" expanded="false" />
+                    <element signature="e#6481#6730#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -136,7 +110,7 @@
             <entry file="file://$PROJECT_DIR$/app/controllers/dashboardController.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="23" column="33" selection-start-line="9" selection-start-column="4" selection-end-line="23" selection-end-column="33" />
+                  <caret line="10" column="0" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -146,7 +120,27 @@
             <entry file="file://$PROJECT_DIR$/app/controllers/listController.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+                  <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/models/game.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="gamelist.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/models/gamelist.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.20782396">
+                  <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
@@ -199,15 +193,11 @@
         <option value="$PROJECT_DIR$/app/scss/modules.scss" />
         <option value="$PROJECT_DIR$/app/scss/layout.scss" />
         <option value="$PROJECT_DIR$/app/app.js" />
-        <option value="$PROJECT_DIR$/app/models/game.js" />
         <option value="$PROJECT_DIR$/app/templates/user-page.jade" />
-        <option value="$PROJECT_DIR$/app/templates/browse-games.jade" />
-        <option value="$PROJECT_DIR$/app/templates/home.jade" />
         <option value="$PROJECT_DIR$/app/templates/user-profile.jade" />
         <option value="$PROJECT_DIR$/app/routes.js" />
         <option value="$PROJECT_DIR$/app/controllers/submitGameController.js" />
         <option value="$PROJECT_DIR$/app/templates/submit-game.jade" />
-        <option value="$PROJECT_DIR$/app/models/gamelist.js" />
         <option value="$PROJECT_DIR$/app/scss/game/modules.scss" />
         <option value="$PROJECT_DIR$/app/scss/app.scss" />
         <option value="$PROJECT_DIR$/app/controllers/profileController.js" />
@@ -218,9 +208,13 @@
         <option value="$PROJECT_DIR$/app/controllers/searchController.js" />
         <option value="$PROJECT_DIR$/app/templates/layout.jade" />
         <option value="$PROJECT_DIR$/app/controllers/headerController.js" />
+        <option value="$PROJECT_DIR$/app/templates/browse-games.jade" />
+        <option value="$PROJECT_DIR$/app/templates/home.jade" />
+        <option value="$PROJECT_DIR$/app/models/gamelist.js" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/app/templates/game.jade" />
+        <option value="$PROJECT_DIR$/app/models/game.js" />
         <option value="$PROJECT_DIR$/app/controllers/gameController.js" />
+        <option value="$PROJECT_DIR$/app/templates/game.jade" />
         <option value="$PROJECT_DIR$/app/services/RESTService.js" />
       </list>
     </option>
@@ -561,7 +555,13 @@
       <option name="project" value="LOCAL" />
       <updated>1473809217642</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="game: added the remove functionality">
+      <created>1473899041949</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1473899041949</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -613,7 +613,8 @@
     <MESSAGE value="game: playing now and completed func." />
     <MESSAGE value="profile: populated with data&#10;game: fixed how hoursplayed and rating update" />
     <MESSAGE value="game: fixed issue updating rating with unadded game" />
-    <option name="LAST_COMMIT_MESSAGE" value="game: fixed issue updating rating with unadded game" />
+    <MESSAGE value="game: added the remove functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="game: added the remove functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -773,8 +774,8 @@
         <state vertical-scroll-proportion="0.5898876">
           <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
           <folding>
-            <marker date="1473898929000" expanded="true" signature="1707:1717" placeholder="{...}" />
-            <marker date="1473898929000" expanded="true" signature="8040:8049" placeholder="{...}" />
+            <marker date="1473923028000" expanded="true" signature="1707:1717" placeholder="{...}" />
+            <marker date="1473923028000" expanded="true" signature="8128:8137" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -784,16 +785,6 @@
         <state vertical-scroll-proportion="0.04761905">
           <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42787287">
-          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -813,26 +804,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/browse-games.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scss/globals.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.25">
           <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -928,34 +903,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/home.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18337408">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/searchController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29339853">
           <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/dashboardController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="33" selection-start-line="9" selection-start-column="4" selection-end-line="23" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/listController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -976,10 +927,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/game.js">
+    <entry file="file://$PROJECT_DIR$/app/templates/profile.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/home.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18337408">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/browse-games.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11002445">
+          <caret line="9" column="64" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/listController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="31" column="15" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/dashboardController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="77" column="44" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41564792">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -992,56 +999,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/profile.jade">
+    <entry file="file://$PROJECT_DIR$/app/models/game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/gamelist.js">
+    <entry file="file://$PROJECT_DIR$/app/controllers/gameController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="101" column="39" selection-start-line="101" selection-start-column="39" selection-end-line="103" selection-end-column="41" />
-          <folding />
+          <caret line="27" column="62" selection-start-line="27" selection-start-column="62" selection-end-line="27" selection-end-column="62" />
+          <folding>
+            <element signature="e#5659#6423#0" expanded="false" />
+            <element signature="e#6481#6730#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/game.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+          <caret line="44" column="52" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/gamelist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20782396">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/services/RESTService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6458333">
-          <caret line="174" column="14" selection-start-line="174" selection-start-column="14" selection-end-line="174" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.1">
+          <caret line="309" column="15" selection-start-line="309" selection-start-column="15" selection-end-line="309" selection-end-column="15" />
           <folding>
             <element signature="e#242#319#0" expanded="false" />
             <element signature="e#363#450#0" expanded="false" />
-            <element signature="e#2846#3041#0" expanded="false" />
-            <element signature="e#5182#6037#0" expanded="false" />
+            <element signature="e#3012#3207#0" expanded="false" />
+            <element signature="e#6666#7521#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/gameController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6210269">
-          <caret line="125" column="30" selection-start-line="125" selection-start-column="30" selection-end-line="125" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>

@@ -17,7 +17,7 @@ angular.module('app')
         initRan : false
     };
 
-    //var initRan = false;
+
 
     $scope.$watchGroup(['init', 'rating', 'hoursPlayed'], function(newVal, oldVal) {
         console.log(JSON.stringify(newVal[1]) + " " + JSON.stringify(oldVal[1]) + ", " + JSON.stringify(newVal[2]) + " " + JSON.stringify(oldVal[2]));
@@ -39,6 +39,7 @@ console.log(JSON.stringify(newVal[0]) + " " + JSON.stringify(oldVal[0]));
         // TODO: what if hours played was changed from X to 0? wrap w/ OR
         if((newVal[2] != oldVal[2]) && (typeof oldVal[2] != "undefined")) {
             console.log("updating hours played..." + $scope.hoursPlayed);
+
             var postData = {
                 gameId : $scope.init.gameId,
                 hoursPlayed : $scope.hoursPlayed
@@ -51,50 +52,56 @@ console.log(JSON.stringify(newVal[0]) + " " + JSON.stringify(oldVal[0]));
         // get info about the game and check if it has a rating/is added the user's list
         // apparently I can't run an http.get initially and instead have to do it here because there's an issue with the ng-init values not being set when http.get is run.
         if(newVal[0].userId && !$scope.gameState.initRan) {
-            $http.get('/' + $scope.init.userId + '/' + $scope.init.gameId).then(function(res) {
-                console.log('getting user info about the game');
 
-                $scope.userData = res.data;
-                var game = res.data;
-
-                // if something was returned, that means its already been added
-                if(game) {
-                    $scope.gameState.added = true;
-                    $scope.gameState.addText = "added";
-                }
-
-                // if rating exists, show it
-                if(game.rating) {
-                    $scope.rating = game.rating;
-                    $scope.rateButton.visible = false;
-                }
-                else {
-                    $scope.rating = 0;
-                }
-
-                // update hoursPlayed
-                if(game.hoursPlayed) {
-                    $scope.hoursPlayed = game.hoursPlayed;
-                }
-                else {
-                    $scope.hoursPlayed = 0;
-                }
+            // Check if user is logged in, because if not, I don't have to load anything
+            console.log("KASDHKAJS " + typeof $scope.init.userId);
+            if (parseInt($scope.init.userId)) {
 
 
+                $http.get('/' + $scope.init.userId + '/' + $scope.init.gameId).then(function (res) {
+                    console.log('getting user info about the game');
 
-                // completed
-                if (game.completed) {
-                    $scope.gameState.completed = true;
-                    $scope.gameState.completeText = "completed";
-                }
+                    $scope.userData = res.data;
+                    var game = res.data;
 
-                // playing now
-                $scope.gameState.playingNow = game.playingNow;
+                    // if something was returned, that means its already been added
+                    if (game) {
+                        $scope.gameState.added = true;
+                        $scope.gameState.addText = "added";
+                    }
 
-                $scope.gameState.initRan = true;  //set flag so it doesn't run again.
-            }).catch(function(response) {
-                console.error('error', response.status, response.data);
-            });
+                    // if rating exists, show it
+                    if (game.rating) {
+                        $scope.rating = game.rating;
+                        $scope.rateButton.visible = false;
+                    }
+                    else {
+                        $scope.rating = 0;
+                    }
+
+                    // update hoursPlayed
+                    if (game.hoursPlayed) {
+                        $scope.hoursPlayed = game.hoursPlayed;
+                    }
+                    else {
+                        $scope.hoursPlayed = 0;
+                    }
+
+
+                    // completed
+                    if (game.completed) {
+                        $scope.gameState.completed = true;
+                        $scope.gameState.completeText = "completed";
+                    }
+
+                    // playing now
+                    $scope.gameState.playingNow = game.playingNow;
+
+                    $scope.gameState.initRan = true;  //set flag so it doesn't run again.
+                }).catch(function (response) {
+                    console.error('error', response.status, response.data);
+                });
+            }//end if not 0
         }
     });
 
@@ -105,6 +112,7 @@ console.log(JSON.stringify(newVal[0]) + " " + JSON.stringify(oldVal[0]));
     };
 
 
+    // TODO: need to add user rating to game
     // ng-click function to add a game to user's game list
     $scope.addToList = function(id, name) {
         console.log("clicked add button w/ id: " + id.toString());
