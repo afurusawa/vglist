@@ -34,6 +34,7 @@ app.use('/static', express.static(__dirname + '/www'));
 app.use(express.static(__dirname + '/www'));
 app.use(express.static(__dirname + '/app/services'));
 app.use(express.static(__dirname + '/app/config'));
+app.use(express.static(__dirname + '/app/fonts'));
 
 
 // Jade
