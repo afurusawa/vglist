@@ -23,7 +23,7 @@ html
                 .top-bar__search-bar
                     .search-bar
                         .search-bar__field
-                            input(type='text' ng-model='search' placeholder='search for game')
+                            input(type='text' ng-model='search' placeholder='Search for game')
 
                 .top-bar__account
                     if !user
@@ -33,20 +33,10 @@ html
                                     i.fa.fa-pencil-square-o
                                     span Sign Up
                         .account__login
-                            .login__icon(ng-click='toggle()')
+                            .login--local(ng-click='toggle()')
                                 i.fa.fa-sign-in
                                 span Login
 
-                        .account__login--fb
-                            a(href="/auth/facebook")
-                                i.fa.fa-facebook
-                                span via Facebook
-
-                        .login__form(ng-show='login.state')
-                            form(action='/login', method='post')
-                                input(type='text', name='email', placeholder='email')
-                                input(type='password', name='password', placeholder='password')
-                                input(type="submit", value='login')
                     else
                         .account__user
                             if user.facebook
@@ -58,10 +48,23 @@ html
                             i.fa.fa-sign-out
                             a(href="/logout") Logout
 
-            .search-bar__results(ng-hide='search.length < 3', ng-cloak)
-                .results(ng-show='search.length >= 3', ng-repeat = "game in results")
-                    a(href='/game/{{game._id}}') {{game.title}} [id: {{game._id}}]
-                       // button(ng-click="addToList(game._id, game.title)", ng-disabled='isDisabled') add to list
+            // Dependent Modals
+            .top-bar--modals
+                .login__form(ng-show='login.state')
+                    .form__container
+                        form(action='/login', method='post')
+                            input(type='text', name='email', placeholder='email')
+                            input(type='password', name='password', placeholder='password')
+                            input(type="submit", value='login')
+                        .login--facebook
+                            a(href="/auth/facebook")
+                                i.fa.fa-facebook
+                                span via Facebook
+
+                .search-bar__results(ng-hide='search.length < 3', ng-cloak)
+                    .results(ng-show='search.length >= 3', ng-repeat = "game in results")
+                        a(href='/game/{{game._id}}') {{game.title}} [id: {{game._id}}]
+                           // button(ng-click="addToList(game._id, game.title)", ng-disabled='isDisabled') add to list
 
 
         section.l-middle
@@ -69,7 +72,8 @@ html
                 ul.menu
                     li.menu__item
                         a(href='/browse-games') ALL GAMES
-                hr
+                    li.menu__item
+                        a(href='/submit-games') SUBMIT
 
             block content
                 h1 content
